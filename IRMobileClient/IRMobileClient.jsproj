@@ -30,11 +30,11 @@
       <Configuration>Debug</Configuration>
       <Platform>Windows Phone 8</Platform>
     </ProjectConfiguration>
-	<ProjectConfiguration Include="Debug|Windows Phone (Universal)">
-	  <Configuration>Debug</Configuration>
-	  <Platform>Windows Phone (Universal)</Platform>
-	</ProjectConfiguration>
-	<ProjectConfiguration Include="Release|Android">
+    <ProjectConfiguration Include="Debug|Windows Phone (Universal)">
+      <Configuration>Debug</Configuration>
+      <Platform>Windows Phone (Universal)</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Android">
       <Configuration>Release</Configuration>
       <Platform>Android</Platform>
     </ProjectConfiguration>
@@ -62,11 +62,11 @@
       <Configuration>Release</Configuration>
       <Platform>Windows Phone 8</Platform>
     </ProjectConfiguration>
-	<ProjectConfiguration Include="Release|Windows Phone (Universal)">
-	  <Configuration>Release</Configuration>
-	  <Platform>Windows Phone (Universal)</Platform>
-	</ProjectConfiguration>
-	<ProjectConfiguration Include="Distribution|Android">
+    <ProjectConfiguration Include="Release|Windows Phone (Universal)">
+      <Configuration>Release</Configuration>
+      <Platform>Windows Phone (Universal)</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Distribution|Android">
       <Configuration>Distribution</Configuration>
       <Platform>Android</Platform>
     </ProjectConfiguration>
@@ -94,10 +94,10 @@
       <Configuration>Distribution</Configuration>
       <Platform>Windows Phone 8</Platform>
     </ProjectConfiguration>
-	<ProjectConfiguration Include="Distribution|Windows Phone (Universal)">
-	  <Configuration>Distribution</Configuration>
-	  <Platform>Windows Phone (Universal)</Platform>
-	</ProjectConfiguration>
+    <ProjectConfiguration Include="Distribution|Windows Phone (Universal)">
+      <Configuration>Distribution</Configuration>
+      <Platform>Windows Phone (Universal)</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>6500f5e1-5d4c-4aff-bd52-2121dcc6c36d</ProjectGuid>
@@ -111,6 +111,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="images\" />
+    <Content Include="css\deps\ionic.css" />
+    <Content Include="fonts\ionicons.eot" />
+    <Content Include="fonts\ionicons.svg" />
+    <Content Include="fonts\ionicons.ttf" />
+    <Content Include="fonts\ionicons.woff" />
     <Content Include="merges\android\scripts\android2.3-jscompat.js" />
     <Content Include="merges\android\scripts\platformOverrides.js" />
     <Folder Include="merges\ios\" />
@@ -127,10 +132,12 @@
     <Folder Include="res\screens\wp8\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="config.xml" >
+    <Content Include="config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="index.html" />
+    <Content Include="scripts\deps\ionic.bundle.js" />
+    <Content Include="scripts\deps\ng-cordova.js" />
     <Content Include="scripts\index.js" />
     <Content Include="scripts\platformOverrides.js" />
     <Content Include="css\index.css" />
@@ -154,13 +161,13 @@
     <Content Include="res\icons\ios\icon-small-2x.png" />
     <Content Include="res\icons\windows\logo.png" />
     <Content Include="res\icons\windows\smalllogo.png" />
-	<Content Include="res\icons\windows\Square150x150Logo.scale-240.png" />
-	<Content Include="res\icons\windows\Square44x44Logo.scale-240.png" />
-	<Content Include="res\icons\windows\Square71x71Logo.scale-240.png" />
+    <Content Include="res\icons\windows\Square150x150Logo.scale-240.png" />
+    <Content Include="res\icons\windows\Square44x44Logo.scale-240.png" />
+    <Content Include="res\icons\windows\Square71x71Logo.scale-240.png" />
     <Content Include="res\icons\windows\storelogo.png" />
-	<Content Include="res\icons\windows\StoreLogo.scale-240.png" />
-	<Content Include="res\icons\windows\Wide310x150Logo.scale-240.png" />
-	<Content Include="res\icons\wp8\icon-62-tile.png" />
+    <Content Include="res\icons\windows\StoreLogo.scale-240.png" />
+    <Content Include="res\icons\windows\Wide310x150Logo.scale-240.png" />
+    <Content Include="res\icons\wp8\icon-62-tile.png" />
     <Content Include="res\icons\wp8\icon-173-tile.png" />
     <Content Include="res\native\android\ant.properties" />
     <Content Include="res\screens\android\screen-hdpi-landscape.png" />
@@ -179,7 +186,7 @@
     <Content Include="res\screens\ios\screen-iphone-portrait.png" />
     <Content Include="res\screens\ios\screen-iphone-portrait-2x.png" />
     <Content Include="res\screens\windows\splashscreen.png" />
-	<Content Include="res\screens\windows\SplashScreen.scale-240.png" />
+    <Content Include="res\screens\windows\SplashScreen.scale-240.png" />
     <Content Include="res\screens\wp8\screen-portrait.jpg" />
   </ItemGroup>
   <PropertyGroup>
@@ -196,7 +203,7 @@
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
     <TypeScriptSourceMap>false</TypeScriptSourceMap>
   </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)' == 'Distribution'">
+  <PropertyGroup Condition="'$(Configuration)' == 'Distribution'">
     <TypeScriptCompileOnSaveEnabled>false</TypeScriptCompileOnSaveEnabled>
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
     <TypeScriptSourceMap>false</TypeScriptSourceMap>
@@ -213,17 +220,13 @@
     <!-- These errors will trigger if building from inside Visual Studio and requirements could not be determined -->
     <Error Condition="$(MDAPropertiesEvaluated) == 'true' And $(NodeJsDir) == ''" Text="Path to NodeJs could not be determined. Please check that NodeJs has been installed." />
     <Error Condition="$(MDAPropertiesEvaluated) == 'true' And $(MDAVsixDir) == ''" Text="Path to the Visual Studio Extension for Tools for Apache Cordova could not be determined. Please check that the extension has been installed." />
-
     <!-- These errors will trigger if building from outside Visual Studio (e.g. command line) and environment variables have not been set -->
     <Error Condition="$(MDAPropertiesEvaluated) == '' And $(NodeJsDir) == ''" Text="Path to NodeJs has not been specified. Please check that NodeJs has been installed and set the NodeJsDir environment variable before building." />
     <Error Condition="$(MDAPropertiesEvaluated) == '' And $(MDAVsixDir) == ''" Text="Path to Visual Studio Extension for Tools for Apache Cordova has not been specified. Please install it and set the MDAVsixDir environment variable before building." />
-
     <!-- Sanity check that things exist in the specified places. These are more likely to fail if building outside Visual Studio and the required environment variables have not been set, or set incorrectly. -->
     <Error Condition="!Exists('$(NodeJsDir)') Or !Exists('$(NodeJsDir)\node.exe')" Text="The specified NodeJs directory $(NodeJsDir) either does not exist, or does not contain node.exe. Please check that NodeJs has been installed, and set the NodeJsDir variable to the correct directory." />
     <Error Condition="!Exists('$(MDAVsixDir)') Or !Exists('$(MDAVsixDir)\packages\vs-mda')" Text="The specified directory to the Visual Studio extension $(MDAVsixDir)\node.exe either does not exist, or does not contain a packages\vs-mda sub-directory. Please check that the extension directory exists and set the MDAVsixDir variable to the correct directory." />
-
     <!-- Installs (if necessary) the supporting Nodejs module -->
-    <Exec Command='"$(MDAVsixDir)"\packages\vs-mda\install "$(NodeJsDir)" "$(MDAVsixDir)"\packages\vs-mda'/>
+    <Exec Command="&quot;$(MDAVsixDir)&quot;\packages\vs-mda\install &quot;$(NodeJsDir)&quot; &quot;$(MDAVsixDir)&quot;\packages\vs-mda" />
   </Target>
-
 </Project>
