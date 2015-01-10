@@ -110,18 +110,22 @@
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="views\home.html" />
+    <Content Include="views\settings.html" />
+    <Folder Include="css\app\" />
     <Folder Include="images\" />
     <Content Include="css\deps\ionic.css" />
-    <Content Include="fonts\ionicons.eot" />
-    <Content Include="fonts\ionicons.svg" />
-    <Content Include="fonts\ionicons.ttf" />
-    <Content Include="fonts\ionicons.woff" />
+    <Content Include="css\fonts\ionicons.eot" />
+    <Content Include="css\fonts\ionicons.svg" />
+    <Content Include="css\fonts\ionicons.ttf" />
+    <Content Include="css\fonts\ionicons.woff" />
     <Content Include="merges\android\scripts\android2.3-jscompat.js" />
     <Content Include="merges\android\scripts\platformOverrides.js" />
     <Folder Include="merges\ios\" />
     <Content Include="merges\windows\scripts\platformOverrides.js" />
     <Content Include="merges\windows\scripts\winstore-jscompat.js" />
     <Folder Include="merges\wp8\" />
+    <Folder Include="scripts\app\controllers\" />
     <Folder Include="res\icons\android\" />
     <Folder Include="res\icons\ios\" />
     <Folder Include="res\icons\wp8\" />
@@ -136,11 +140,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="index.html" />
+    <Content Include="scripts\app\app.js" />
     <Content Include="scripts\deps\ionic.bundle.js" />
     <Content Include="scripts\deps\ng-cordova.js" />
-    <Content Include="scripts\index.js" />
     <Content Include="scripts\platformOverrides.js" />
-    <Content Include="css\index.css" />
     <Content Include="res\icons\android\icon-36-ldpi.png" />
     <Content Include="res\icons\android\icon-48-mdpi.png" />
     <Content Include="res\icons\android\icon-72-hdpi.png" />
