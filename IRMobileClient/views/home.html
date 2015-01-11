@@ -2,9 +2,18 @@
     <ion-content>
         <p>Here's the content for this page</p>
         <a ui-sref="settings">Settings</a>
+        <h2>Balances</h2>
         <ul>
             <li ng-repeat="balance in balances.balances">
                 <strong>{{balance.currency}}</strong>&nbsp;{{balance.balance | number: 2}}
+            </li>
+        </ul>
+        <h2></h2>
+        <ul>
+            <li ng-repeat="transaction in transactions.transactions">
+                <span ng-if="clientSessionAddress === transaction.destination">+</span>
+                <span ng-if="clientSessionAddress !== transaction.destination">-</span>
+                <strong>{{transaction.amount.currency}}</strong>&nbsp;{{transaction.amount.value | number: 2}}
             </li>
         </ul>
     </ion-content>

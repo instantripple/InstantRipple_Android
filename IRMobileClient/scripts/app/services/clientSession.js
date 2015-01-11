@@ -1,15 +1,15 @@
 ﻿(function() {
     var irApp = angular.module('irApp');
 
-    irApp.factory('clientSession', function () {
+    irApp.factory('clientSession', ['$rootScope', function ($rootScope) {
         var session = {};
 
         var createEmptySession = function() {
             session = {
                 exists: false
             };
+            delete $rootScope.clientSessionAddress;
         }();
-
 
         var start = function (username, address, secret) {
             session = {
@@ -19,6 +19,7 @@
                 exists: true,
                 createdAt: new Date()
             };
+            $rootScope.clientSessionAddress = address;
         };
 
         var clear = function () {
@@ -34,5 +35,5 @@
             clear: clear,
             session: getSession
         };
-    });
+    }]);
 })();

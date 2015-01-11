@@ -4,6 +4,7 @@
     irApp.controller('homeController', [
         '$scope', '$rootScope', '$state', 'clientSession', 'rippleRemote',
         function ($scope, $rootScope, $state, clientSession, rippleRemote) {
+            // BALANCES
             $scope.balances = {};
             $rootScope.balances = $scope.balances;
             $scope.balances.update = function() {
@@ -21,6 +22,20 @@
                     });
                 });
             }();
+            // END BALANCES
+
+            // TRANSACTIONS
+            $scope.transactions = {};
+            $rootScope.transactions = {};
+            $scope.transactions.update = function() {
+                rippleRemote.getAccountTransactions(clientSession.session().address, function (err, res) {
+                    var transactions = res.transactions;
+                    $scope.$apply(function() {
+                        $scope.transactions.transactions = transactions;
+                    });
+                });
+            }();
+            // END TRANSACTIONS
         }
     ]);
 })();
