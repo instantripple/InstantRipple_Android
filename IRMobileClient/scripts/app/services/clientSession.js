@@ -17,10 +17,22 @@
                 address: address,
                 secret: secret,
                 exists: true,
-                createdAt: new Date()
+                createdAt: new Date(),
+                contacts: [],
+                setContacts: setContacts
             };
             $rootScope.clientSessionAddress = address;
         };
+
+        var setContacts = function(contacts) {
+            session.contacts = [];
+            contacts.forEach(function(contact) {
+                session.contacts.push({
+                    name: contact.name,
+                    address: contact.address
+                });
+            });
+        }
 
         var clear = function () {
             createEmptySession();

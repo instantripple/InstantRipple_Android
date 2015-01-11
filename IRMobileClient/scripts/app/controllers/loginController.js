@@ -14,6 +14,7 @@
                     }
 
                     clientSession.start(res.username, res.blob.data.account_id, res.secret);
+                    clientSession.session().setContacts(res.blob.data.contacts);
                     $state.go('home');
                 });
             };

@@ -26,7 +26,7 @@
 
             // TRANSACTIONS
             $scope.transactions = {};
-            $rootScope.transactions = {};
+            $rootScope.transactions = $scope.transactions;
             $scope.transactions.update = function() {
                 rippleRemote.getAccountTransactions(clientSession.session().address, function (err, res) {
                     var transactions = res.transactions;
@@ -36,6 +36,14 @@
                 });
             }();
             // END TRANSACTIONS
+            
+            // CONTACTS
+            $scope.contacts = {};
+            $rootScope.contacts = $scope.contacts;
+            $scope.contacts.update = function() {
+                $scope.contacts.contacts = clientSession.session().contacts;
+            }();
+            // END CONTACTS
         }
     ]);
 })();
