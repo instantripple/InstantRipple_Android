@@ -10,7 +10,7 @@
                 templateUrl: 'views/home.html'
             })
             .state('settings', {
-                url: '/',
+                url: '/settings',
                 templateUrl: 'views/settings.html'
             });
     }]);
