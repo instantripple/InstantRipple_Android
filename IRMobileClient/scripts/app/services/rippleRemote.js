@@ -38,7 +38,10 @@
                     lines.push({
                         currency: line.currency,
                         balance: line.balance,
-                        issuer: line.account
+                        issuer: line.account,
+                        limit: line.limit,
+                        quality: line.quality_out,
+                        canRipple: !line.no_ripple
                     });
                 });
                 callback(err, {
