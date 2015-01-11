@@ -17,7 +17,7 @@
                 address: address,
                 secret: secret,
                 exists: true,
-                createdAt: moment()
+                createdAt: new Date()
             };
         };
 
