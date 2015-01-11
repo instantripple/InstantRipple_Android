@@ -25,10 +25,14 @@
             createEmptySession();
         };
 
+        var getSession = function() {
+            return session;
+        }
+
         return {
             start: start,
             clear: clear,
-            session: session
+            session: getSession
         };
     });
 })();

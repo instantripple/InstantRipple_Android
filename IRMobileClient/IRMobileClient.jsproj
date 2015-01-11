@@ -110,9 +110,11 @@
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="scripts\app\controllers\settingsController.js" />
     <Content Include="scripts\app\controllers\homeController.js" />
     <Content Include="scripts\app\controllers\loginController.js" />
     <Content Include="scripts\app\services\clientSession.js" />
+    <Content Include="scripts\deps\angular-moment.js" />
     <Content Include="scripts\deps\moment.js" />
     <Content Include="scripts\deps\ripple-0.10.0.js" />
     <Content Include="scripts\deps\sjcl.js" />

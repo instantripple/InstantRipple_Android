@@ -4,7 +4,7 @@
     irApp.controller('homeController', [
         '$state', 'clientSession',
         function ($state, clientSession) {
-            if (!clientSession.session.exists) {
+            if (!clientSession.session().exists) {
                 $state.go('login');
             }
         }
