@@ -114,6 +114,7 @@
     <Content Include="scripts\app\controllers\homeController.js" />
     <Content Include="scripts\app\controllers\loginController.js" />
     <Content Include="scripts\app\services\clientSession.js" />
+    <Content Include="scripts\app\services\rippleRemote.js" />
     <Content Include="scripts\deps\angular-moment.js" />
     <Content Include="scripts\deps\moment.js" />
     <Content Include="scripts\deps\ripple-0.10.0.js" />

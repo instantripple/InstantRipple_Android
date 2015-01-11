@@ -2,5 +2,10 @@
     <ion-content>
         <p>Here's the content for this page</p>
         <a ui-sref="settings">Settings</a>
+        <ul>
+            <li ng-repeat="balance in balances.balances">
+                <strong>{{balance.currency}}</strong>&nbsp;{{balance.balance | number: 2}}
+            </li>
+        </ul>
     </ion-content>
 </ion-view>

@@ -8,8 +8,8 @@
             session = {
                 exists: false
             };
-        }
-        createEmptySession();
+        }();
+
 
         var start = function (username, address, secret) {
             session = {
@@ -27,7 +27,7 @@
 
         var getSession = function() {
             return session;
-        }
+        };
 
         return {
             start: start,

@@ -3,11 +3,11 @@
 
     irApp.factory('rippleRemote', function () {
         var remote = new ripple.Remote({
-            servers: {
-                host: "s-west@ripple.com",
+            servers: [{
+                host: 's-west.ripple.com',
                 port: 443,
                 secure: true,
-            },
+            }],
             trace: true,
             trusted: true,
             local_signing: true,
@@ -15,32 +15,35 @@
             fee_cushion: 1.1,
             max_fee: 100000
         });
+        remote.connect();
 
-        var requestAccountInfo = function(address) {
+        var requestAccountInfo = function(address, callback) {
             remote.requestAccountInfo({
                 account: address,
                 ledger: "validated"
             }, function(err, res) {
-                if (err) {
-                    throw err;
-                }
-                return {
+                callback(err, {
                     balance: parseFloat(res.account_data.Balance / 1000000)
-                };
+                });
             });
         };
 
-        var requestAccountLines = function(address) {
+        var requestAccountLines = function(address, callback) {
             remote.requestAccountLines({
                 account: address,
                 ledger: "validated"
             }, function(err, res) {
-                if (err) {
-                    throw err;
-                }
-                return {
-                    lines: res.lines
-            }
+                var lines = [];
+                res.lines.forEach(function(line) {
+                    lines.push({
+                        currency: line.currency,
+                        balance: line.balance,
+                        issuer: line.account
+                    });
+                });
+                callback(err, {
+                    lines: lines
+                });
             });
         };
 
