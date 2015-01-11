@@ -114,6 +114,8 @@
     <Content Include="scripts\app\controllers\loginController.js" />
     <Content Include="scripts\app\services\clientSession.js" />
     <Content Include="scripts\deps\moment.js" />
+    <Content Include="scripts\deps\ripple-0.10.0.js" />
+    <Content Include="scripts\deps\sjcl.js" />
     <Content Include="views\home.html" />
     <Content Include="views\login.html" />
     <Content Include="views\settings.html" />
