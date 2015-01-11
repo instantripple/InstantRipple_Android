@@ -110,7 +110,12 @@
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="scripts\app\controllers\homeController.js" />
+    <Content Include="scripts\app\controllers\loginController.js" />
+    <Content Include="scripts\app\services\clientSession.js" />
+    <Content Include="scripts\deps\moment.js" />
     <Content Include="views\home.html" />
+    <Content Include="views\login.html" />
     <Content Include="views\settings.html" />
     <Folder Include="css\app\" />
     <Folder Include="images\" />
@@ -125,7 +130,6 @@
     <Content Include="merges\windows\scripts\platformOverrides.js" />
     <Content Include="merges\windows\scripts\winstore-jscompat.js" />
     <Folder Include="merges\wp8\" />
-    <Folder Include="scripts\app\controllers\" />
     <Folder Include="res\icons\android\" />
     <Folder Include="res\icons\ios\" />
     <Folder Include="res\icons\wp8\" />

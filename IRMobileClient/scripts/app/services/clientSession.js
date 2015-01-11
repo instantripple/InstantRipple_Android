@@ -1,16 +1,18 @@
 ﻿(function() {
     var irApp = angular.module('irApp');
 
-    irApp.service('clientSession', function() {
+    irApp.factory('clientSession', function () {
+        var session = {};
+
         var createEmptySession = function() {
-            this.session = {
+            session = {
                 exists: false
             };
         }
         createEmptySession();
 
-        this.start = function(username, address, secret) {
-            this.session = {
+        var start = function (username, address, secret) {
+            session = {
                 username: username,
                 address: address,
                 secret: secret,
@@ -19,8 +21,14 @@
             };
         };
 
-        this.clear = function() {
+        var clear = function () {
             createEmptySession();
+        };
+
+        return {
+            start: start,
+            clear: clear,
+            session: session
         };
     });
 })();
