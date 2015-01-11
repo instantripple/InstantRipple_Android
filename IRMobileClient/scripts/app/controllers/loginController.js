@@ -10,7 +10,7 @@
                 var vaultClient = new ripple.VaultClient();
                 vaultClient.loginAndUnlock($scope.loginForm.username, $scope.loginForm.password, null, function(err, res) {
                     if (err) {
-                        return;
+                        throw err;
                     }
 
                     clientSession.start(res.username, res.blob.data.account_id, res.secret);
