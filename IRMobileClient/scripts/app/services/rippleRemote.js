@@ -86,10 +86,29 @@
             });
         };
 
+        var checkSend = function(destination, amount, callback) {
+            requestAccountLines(destination, function(err, res) {
+                
+            });
+        };
+
+        var commitSend = function(sender, destination, amount, callback) {
+            var payment = remote.createTransaction('Payment', {
+                account: sender,
+                destination: destination,
+                amount: amount
+            });
+            payment.submit(function (err, res) {
+                callback(err, res);
+            });
+        };
+
         return {
             getAccountInfo: requestAccountInfo,
             getAccountLines: requestAccountLines,
-            getAccountTransactions: requestAccountTransactions
+            getAccountTransactions: requestAccountTransactions,
+            checkSend: checkSend,
+            commitSend: commitSend
         };
     });
 })();
