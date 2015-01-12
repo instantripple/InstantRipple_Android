@@ -112,6 +112,7 @@
   <ItemGroup>
     <Content Include="css\app\app.css" />
     <Content Include="images\ir-logo.png" />
+    <Content Include="res\native\android\keystore.dat" />
     <Content Include="scripts\app\controllers\indexController.js" />
     <Content Include="scripts\app\controllers\settingsController.js" />
     <Content Include="scripts\app\controllers\homeController.js" />
