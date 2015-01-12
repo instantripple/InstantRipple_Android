@@ -3,6 +3,7 @@
 
     irApp.factory('clientSession', ['$rootScope', function ($rootScope) {
         var session = {};
+        var blob;
 
         var createEmptySession = function() {
             session = {
@@ -11,7 +12,8 @@
             delete $rootScope.clientSessionAddress;
         }();
 
-        var start = function (username, address, secret) {
+        var start = function (username, address, secret, remoteBlob) {
+            blob = remoteBlob;
             session = {
                 username: username,
                 address: address,
@@ -19,18 +21,46 @@
                 exists: true,
                 createdAt: new Date(),
                 contacts: [],
-                setContacts: setContacts
+                saveContact: saveContactToBlob,
+                removeContact: removeContactFromBlob
             };
             $rootScope.clientSessionAddress = address;
+
+            updateContactsView();
         };
 
-        var setContacts = function(contacts) {
+        var saveContactToBlob = function (contact) {
+            var patchContact = {
+                name: contact.name,
+                view: contact.address,
+                address: contact.address
+            }
+            if (contact.destinationTag) {
+                patchContact.dt = contact.destinationTag;
+            }
+
+            blob.filter('/contacts', 'name', patchContact.name, 'extend', '', patchContact);
+
+            updateContactsView();
+        };
+
+        var removeContactFromBlob = function(contact) {
+            blob.filter('/contacts', 'name', contact.name, 'unset', '');
+
+            updateContactsView();
+        };
+
+        var updateContactsView = function() {
             session.contacts = [];
-            contacts.forEach(function(contact) {
-                session.contacts.push({
+            blob.data.contacts.forEach(function (contact) {
+                var newContact = {
                     name: contact.name,
                     address: contact.address
-                });
+                }
+                if (contact.dt) {
+                    newContact.destinationTag = contact.dt;
+                }
+                session.contacts.push(newContact);
             });
         }
 
