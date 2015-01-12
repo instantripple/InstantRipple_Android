@@ -3,11 +3,11 @@
 
     irApp.config([
         '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-            $urlRouterProvider.otherwise('/');
+            $urlRouterProvider.otherwise('/login');
 
             $stateProvider
                 .state('login', {
-                    url: '/',
+                    url: '/login',
                     templateUrl: 'views/login.html',
                     controller: 'loginController'
                 })
