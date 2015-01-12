@@ -4,6 +4,8 @@
     irApp.controller('homeController', [
         '$scope', '$rootScope', '$state', 'clientSession', 'rippleRemote',
         function ($scope, $rootScope, $state, clientSession, rippleRemote) {
+            $rootScope.showHeader = true;
+
             // BALANCES
             $scope.balances = {};
             $rootScope.balances = $scope.balances;

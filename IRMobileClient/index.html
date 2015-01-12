@@ -5,6 +5,7 @@
     <title>Instant Ripple</title>
 
     <link href="css/deps/ionic.css" rel="stylesheet" />
+    <link href="css/app/app.css" rel="stylesheet" />
 
     <script src="scripts/platformOverrides.js"></script>
     <script src="scripts/deps/ionic.bundle.js"></script>
@@ -23,7 +24,7 @@
     <script src="scripts/app/controllers/settingsController.js"></script>
 </head>
     <body ng-app="irApp">
-        <ion-nav-bar class="bar-energized">
+        <ion-nav-bar class="bar-positive" ng-if="showHeader">
             <ion-nav-back-button class="button-clear">
                 <i class="ion-arrow-left-c"></i> Back
             </ion-nav-back-button>

@@ -1,0 +1,13 @@
+﻿body {
+    background-color: #E5E5E5;
+}
+
+#login-logo {
+    margin: 100px auto 20px;
+    width: 75%;
+}
+
+#login-logo img {
+    width: 100%;
+    height: auto;
+}

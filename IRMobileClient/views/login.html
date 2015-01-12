@@ -1,5 +1,8 @@
-﻿<ion-view title="Login">
+﻿<ion-view title="Instant Ripple">
     <ion-content>
+        <div id="login-logo">
+            <img src="/images/IR-logo.png" />
+        </div>
         <div class="list">
             <label class="item item-input">
                 <span class="input-label">~</span>
@@ -10,11 +13,8 @@
                 <input type="password" placeholder="password" ng-model="loginForm.password">
             </label>
         </div>
-        <button class="button button-block button-positive" ng-click="login();">
-            login
-        </button>
-        <button class="button button-block button-positive" ng-click="bypass();">
-            enter
-        </button>
+        <div id="login-button">
+            <button class="button button-block button-positive" ng-click="login();"><i class="ion-log-in"></i></button>
+        </div>
     </ion-content>
 </ion-view>

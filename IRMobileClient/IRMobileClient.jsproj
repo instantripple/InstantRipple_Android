@@ -110,6 +110,8 @@
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="css\app\app.css" />
+    <Content Include="images\ir-logo.png" />
     <Content Include="scripts\app\controllers\settingsController.js" />
     <Content Include="scripts\app\controllers\homeController.js" />
     <Content Include="scripts\app\controllers\loginController.js" />
@@ -122,8 +124,6 @@
     <Content Include="views\home.html" />
     <Content Include="views\login.html" />
     <Content Include="views\settings.html" />
-    <Folder Include="css\app\" />
-    <Folder Include="images\" />
     <Content Include="css\deps\ionic.css" />
     <Content Include="css\fonts\ionicons.eot" />
     <Content Include="css\fonts\ionicons.svg" />
