@@ -6,25 +6,35 @@
         function ($scope, $rootScope, $state, clientSession, rippleRemote) {
             $rootScope.showHeader = true;
 
-            // BALANCES
+            // BALANCES & LINES
             $scope.balances = {};
+            $scope.lines = {};
             $rootScope.balances = $scope.balances;
+            $rootScope.lines = $scope.lines;
             $scope.balances.update = function() {
                 rippleRemote.getAccountInfo(clientSession.session().address, function(err, res) {
                     var xrpBalance = res.balance;
                     rippleRemote.getAccountLines(clientSession.session().address, function(err2, res2) {
-                        var currencyBalances = res2.lines;
-                        currencyBalances.push({
+                        var lines = res2.lines;
+                        var balances = Enumerable.From(lines)
+                            .GroupBy("$.currency", null, function(key, x) {
+                                return {
+                                    currency: key,
+                                    balance: x.Sum("$.balance")
+                                };
+                            }).ToArray();
+                        balances.push({
                             currency: 'XRP',
                             balance: xrpBalance
                         });
-                        $scope.$apply(function() {
-                            $scope.balances.balances = currencyBalances;
+                        $scope.$apply(function () {
+                            $scope.lines.lines = lines;
+                            $scope.balances.balances = balances;
                         });
                     });
                 });
             }();
-            // END BALANCES
+            // END BALANCES & LINES
 
             // TRANSACTIONS
             $scope.transactions = {};

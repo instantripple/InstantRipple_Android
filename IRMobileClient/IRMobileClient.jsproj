@@ -118,6 +118,7 @@
     <Content Include="scripts\app\services\clientSession.js" />
     <Content Include="scripts\app\services\rippleRemote.js" />
     <Content Include="scripts\deps\angular-moment.js" />
+    <Content Include="scripts\deps\linq.js" />
     <Content Include="scripts\deps\moment.js" />
     <Content Include="scripts\deps\ripple-0.10.0.js" />
     <Content Include="scripts\deps\sjcl.js" />
