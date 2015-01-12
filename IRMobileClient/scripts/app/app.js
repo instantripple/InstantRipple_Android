@@ -1,6 +1,8 @@
 ﻿(function() {
     var irApp = angular.module('irApp', ['ngCordova', 'ionic']);
 
+    ionic.Platform.isFullScreen = true;
+
     irApp.config([
         '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/login');

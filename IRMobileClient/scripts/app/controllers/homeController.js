@@ -2,8 +2,9 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('homeController', [
-        '$scope', '$rootScope', '$state', 'clientSession', 'rippleRemote',
-        function ($scope, $rootScope, $state, clientSession, rippleRemote) {
+        '$scope', '$rootScope', '$state', '$ionicViewService', 'clientSession', 'rippleRemote',
+        function ($scope, $rootScope, $state, $ionicViewService, clientSession, rippleRemote) {
+            $ionicViewService.clearHistory();
             $rootScope.showHeader = true;
 
             // BALANCES & LINES

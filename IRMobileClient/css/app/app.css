@@ -3,7 +3,7 @@
 }
 
 #login-logo {
-    margin: 100px auto 20px;
+    margin: 20px auto;
     width: 75%;
 }
 
@@ -23,5 +23,5 @@
     float: right;
 }
 .balance-list {
-    font-size: 120%;
+    font-size: 130%;
 }
