@@ -3,18 +3,23 @@
         <div id="login-logo">
             <img src="/images/IR-logo.png" />
         </div>
-        <div class="list">
-            <label class="item item-input">
-                <span class="input-label">~</span>
-                <input type="text" placeholder="username" ng-model="loginForm.username">
-            </label>
-            <label class="item item-input">
-                <span class="input-label">&nbsp;</span>
-                <input type="password" placeholder="password" ng-model="loginForm.password">
-            </label>
-        </div>
-        <div id="login-button">
-            <button class="button button-block button-positive" ng-click="login();"><i class="ion-log-in"></i></button>
-        </div>
+        <form ng-submit="login();">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">~</span>
+                    <input type="text" placeholder="username" ng-model="loginForm.username">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">&nbsp;</span>
+                    <input type="password" placeholder="password" ng-model="loginForm.password">
+                </label>
+            </div>
+            <div>
+                <button type="submit" ng-disabled="!loginForm.username || !loginForm.password" class="button button-block button-positive"><i class="ion-log-in"></i></button>
+            </div>
+            <div class="list list-inset">
+                <div ng-if="loginForm.isError" class="item item-text-wrap item-energized"><p>We could not log you in using those details, please try again.</p></div>
+            </div>
+        </form>
     </ion-content>
 </ion-view>

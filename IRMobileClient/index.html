@@ -24,7 +24,7 @@
     <script src="scripts/app/controllers/settingsController.js"></script>
 </head>
     <body ng-app="irApp">
-        <ion-nav-bar class="bar-positive" ng-if="showHeader">
+        <ion-nav-bar class="bar-positive" ng-class="{hide: !showHeader}">
             <ion-nav-back-button class="button-clear">
                 <i class="ion-arrow-left-c"></i> Back
             </ion-nav-back-button>
