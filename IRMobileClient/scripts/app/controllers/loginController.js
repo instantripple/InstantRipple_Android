@@ -2,8 +2,8 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('loginController', [
-        '$scope', '$rootScope', '$state', 'clientSession', '$ionicLoading',
-        function ($scope, $rootScope, $state, clientSession, $ionicLoading) {
+        '$scope', '$rootScope', 'analytics', '$state', 'clientSession', '$ionicLoading',
+        function ($scope, $rootScope, analytics, $state, clientSession, $ionicLoading) {
             $rootScope.showHeader = false;
 
             $scope.loginForm = {};

@@ -118,6 +118,7 @@
     <Content Include="scripts\app\controllers\homeController.js" />
     <Content Include="scripts\app\controllers\loginController.js" />
     <Content Include="scripts\app\filters\currencyFilter.js" />
+    <Content Include="scripts\app\services\analytics.js" />
     <Content Include="scripts\app\services\clientSession.js" />
     <Content Include="scripts\app\services\rippleRemote.js" />
     <Content Include="scripts\deps\angular-moment.js" />
