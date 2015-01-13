@@ -9,6 +9,10 @@
                     case 'BTC':
                         decimals = 4;
                         break;
+                    case 'XRP':
+                    case 'STR':
+                        decimals = 0;
+                        break;
                 };
 
                 return $filter('number')(amount, decimals);
