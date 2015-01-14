@@ -114,7 +114,6 @@
     <Content Include="images\ir-logo.png" />
     <Content Include="res\native\android\keystore.dat" />
     <Content Include="scripts\app\controllers\indexController.js" />
-    <Content Include="scripts\app\controllers\settingsController.js" />
     <Content Include="scripts\app\controllers\homeController.js" />
     <Content Include="scripts\app\controllers\loginController.js" />
     <Content Include="scripts\app\filters\currencyFilter.js" />
@@ -128,7 +127,6 @@
     <Content Include="scripts\deps\sjcl.js" />
     <Content Include="views\home.html" />
     <Content Include="views\login.html" />
-    <Content Include="views\settings.html" />
     <Content Include="css\deps\ionic.css" />
     <Content Include="css\fonts\ionicons.eot" />
     <Content Include="css\fonts\ionicons.svg" />
