@@ -10,7 +10,8 @@
                 exists: false
             };
             delete $rootScope.clientSessionAddress;
-        }();
+        };
+        createEmptySession();
 
         var start = function (username, address, secret, remoteBlob) {
             blob = remoteBlob;
@@ -64,7 +65,7 @@
             });
         }
 
-        var clear = function () {
+        var clear = function() {
             createEmptySession();
         };
 
