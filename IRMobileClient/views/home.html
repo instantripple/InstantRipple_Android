@@ -4,7 +4,7 @@
     </ion-nav-buttons>
     <ion-content>
         <div class="list card" ng-if="balances.balances">
-            <div class="item full-width balance-list" ng-repeat="balance in balances.balances">
+            <div class="item full-width balance-list" ng-repeat="balance in balances.balances | orderBy: balance.currency">
                 <span class="text-left float-left"><strong>{{balance.currency}}</strong></span>
                 <span class="text-right float-right">{{balance.balance | currency: balance.currency}}</span>
             </div>
