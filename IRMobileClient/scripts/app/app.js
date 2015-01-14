@@ -17,11 +17,6 @@
                     url: '/home',
                     templateUrl: 'views/home.html',
                     controller: 'homeController'
-                })
-                .state('settings', {
-                    url: '/settings',
-                    templateUrl: 'views/settings.html',
-                    controller: 'settingsController'
                 });
         }
     ]);

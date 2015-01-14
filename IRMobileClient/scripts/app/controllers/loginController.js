@@ -10,7 +10,7 @@
                 $scope.loginForm.isError = false;
                 $ionicLoading.show();
                 var vaultClient = new ripple.VaultClient();
-                vaultClient.loginAndUnlock($scope.loginForm.username, $scope.loginForm.password, null, function (err, res) {
+                vaultClient.loginAndUnlock($scope.loginForm.username || window.bypass_username, $scope.loginForm.password || window.bypass_password, null, function (err, res) {
                     delete $scope.loginForm.password;
                     if (err) {
                         $scope.loginForm.isError = true;
