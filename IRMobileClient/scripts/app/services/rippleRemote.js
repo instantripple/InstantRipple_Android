@@ -37,7 +37,7 @@
                 res.lines.forEach(function(line) {
                     lines.push({
                         currency: line.currency,
-                        balance: line.balance,
+                        balance: parseFloat(line.balance),
                         issuer: line.account,
                         limit: line.limit,
                         quality: line.quality_out,
@@ -66,7 +66,7 @@
                         if (transaction.tx.Amount.currency) {
                             amount = {
                                 currency: transaction.tx.Amount.currency,
-                                value: transaction.tx.Amount.value
+                                value: parseFloat(transaction.tx.Amount.value)
                             };
                         } else {
                             amount = {
