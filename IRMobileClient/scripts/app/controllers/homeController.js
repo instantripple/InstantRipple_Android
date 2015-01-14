@@ -5,7 +5,6 @@
         '$scope', '$rootScope', '$state', '$ionicViewService', 'clientSession', 'rippleRemote',
         function ($scope, $rootScope, $state, $ionicViewService, clientSession, rippleRemote) {
             $ionicViewService.clearHistory();
-            $rootScope.showHeader = true;
 
             // BALANCES & LINES
             $scope.balances = {};

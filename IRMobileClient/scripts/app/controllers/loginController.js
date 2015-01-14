@@ -2,10 +2,8 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('loginController', [
-        '$scope', '$rootScope', 'analytics', '$state', 'clientSession', '$ionicLoading',
-        function ($scope, $rootScope, analytics, $state, clientSession, $ionicLoading) {
-            $rootScope.showHeader = false;
-
+        '$scope', 'analytics', '$state', 'clientSession', '$ionicLoading',
+        function ($scope, analytics, $state, clientSession, $ionicLoading) {
             $scope.loginForm = {};
 
             $scope.login = function () {
@@ -23,7 +21,6 @@
                     clientSession.start(res.username, res.blob.data.account_id, res.secret, res.blob);
                     $ionicLoading.hide();
                     $state.go('home');
-                    $rootScope.showHeader = true;
                 });
             };
         }

@@ -7,7 +7,6 @@
             $scope.logout = function () {
                 if (clientSession.session().exists) {
                     clientSession.clear();
-                    $rootScope.showHeader = false;
                     $state.go('login');
                 }
             };
