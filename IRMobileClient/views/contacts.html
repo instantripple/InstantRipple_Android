@@ -1,0 +1,13 @@
+﻿<ion-view title="Contacts">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="list" ng-if="contacts">
+            <div class="item full-width balance-list" ng-repeat="contact in contacts | orderBy: contact.name">
+                <span class="text-left float-left"><strong>{{contact.name}}</strong></span>
+                <span class="text-right float-right"><small>{{contact.address}}</small></span>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

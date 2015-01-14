@@ -115,6 +115,7 @@
     <Content Include="res\native\android\keystore.dat" />
     <Content Include="scripts\app\controllers\indexController.js" />
     <Content Include="scripts\app\controllers\homeController.js" />
+    <Content Include="scripts\app\controllers\contactsController.js" />
     <Content Include="scripts\app\controllers\loginController.js" />
     <Content Include="scripts\app\filters\currencyFilter.js" />
     <Content Include="scripts\app\services\analytics.js" />
@@ -126,6 +127,7 @@
     <Content Include="scripts\deps\moment.js" />
     <Content Include="scripts\deps\ripple-0.10.0.js" />
     <Content Include="scripts\deps\sjcl.js" />
+    <Content Include="views\contacts.html" />
     <Content Include="views\home.html" />
     <Content Include="views\login.html" />
     <Content Include="css\deps\ionic.css" />

@@ -17,6 +17,11 @@
                     url: '/home',
                     templateUrl: 'views/home.html',
                     controller: 'homeController'
+                })
+                .state('contacts', {
+                    url: '/contacts',
+                    templateUrl: 'views/contacts.html',
+                    controller: 'contactsController'
                 });
         }
     ]);
