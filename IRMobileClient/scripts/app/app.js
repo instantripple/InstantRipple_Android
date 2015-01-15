@@ -13,13 +13,11 @@
                     templateUrl: 'views/login.html',
                     controller: 'loginController'
                 })
-                .state('home', {
-                    url: '/home',
-                    templateUrl: 'views/home.html',
-                    controller: 'homeController'
+                .state('balances', {
+                    templateUrl: 'views/balances.html',
+                    controller: 'balancesController'
                 })
                 .state('contacts', {
-                    url: '/contacts',
                     templateUrl: 'views/contacts.html',
                     controller: 'contactsController'
                 });
