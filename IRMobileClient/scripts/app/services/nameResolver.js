@@ -5,9 +5,14 @@
         var nameCache = [];
 
         var resolveName = function (address, onResolve) {
-            // First resolve with contacts.
-            var contacts = clientSession.session().contacts;
-            var possibleContact = Enumerable.From(contacts).FirstOrDefault(false, function (x) { return x.address == address; });
+            var session = clientSession.session();
+            // Is it our address? No need to lookup.
+            if (address = session.address) {
+                onResolve(session.username);
+                return;
+            }
+            // Next resolve with contacts.
+            var possibleContact = Enumerable.From(session.contacts).FirstOrDefault(false, function (x) { return x.address == address; });
             if (possibleContact) {
                 onResolve(possibleContact.name);
                 return;
