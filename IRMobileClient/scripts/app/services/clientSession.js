@@ -1,7 +1,7 @@
 ﻿(function() {
     var irApp = angular.module('irApp');
 
-    irApp.factory('clientSession', ['$rootScope', function ($rootScope) {
+    irApp.factory('clientSession', [function () {
         var session = {};
         var blob;
 
@@ -9,7 +9,6 @@
             session = {
                 exists: false
             };
-            delete $rootScope.clientSessionAddress;
         };
         createEmptySession();
 
@@ -25,7 +24,6 @@
                 saveContact: saveContactToBlob,
                 removeContact: removeContactFromBlob
             };
-            $rootScope.clientSessionAddress = address;
 
             updateContactsView();
         };

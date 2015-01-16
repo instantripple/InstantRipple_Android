@@ -15,6 +15,7 @@
                                 return {
                                     currency: key,
                                     balance: x.Sum('$.balance'),
+                                    lines: Enumerable.From(lines).Where(function (y) { return y.currency == key; }).ToArray(),
                                     showLines: false
                                 };
                             })
