@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-console.log('cordova-minify STARTING - minifying your js, css, and images. Sit back and relax!');
 
 var fs = require('fs');
 var path = require('path');
@@ -96,7 +95,6 @@ function compress(file) {
     }
 }
 
-
 switch (platform) {
     case 'android':
         platformPath = path.join(platformPath, platform, "assets", "www");
@@ -108,6 +106,29 @@ switch (platform) {
         console.log('Hook currently supports only Android and iOS');
         return;
 }
+
+function clean(dir) {
+    fs.readdir(dir, function (err, list) {
+        if (err) {
+            console.log('processFolder - reading directories error: ' + err);
+            return;
+        }
+        list.forEach(function(file) {
+            file = path.join(dir, file);
+            fs.stat(file, function(err, stat) {
+                if (!stat.isDirectory()) {
+                    var ext = path.extname(file);
+                    var toRemove = ['.user', '.sln', '.ncrunchsolution', '.cache', '.suo', '.xml'];
+                    if (toRemove.indexOf(ext) > 0) {
+                        fs.unlink(file);
+                    }
+                }
+            });
+        });
+    });
+}
+
+clean(platformPath);
 
 var foldersToProcess = ['scripts', 'css', 'images'];
 
