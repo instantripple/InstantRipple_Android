@@ -3,7 +3,7 @@
 
     irApp.controller('balancesController', [
         '$scope', 'clientSession', '$timeout', 'rippleRemote', '$ionicLoading',
-        function ($scope, clientSession, $timeout, rippleRemote, $ionicLoading) {
+        function ($scope, clientSession, rippleRemote, $ionicLoading) {
             $scope.balances = {};
 
             $scope.balances.update = function () {
@@ -31,7 +31,6 @@
                         });
                     });
                 });
-                $timeout($scope.balances.update, 60000);
             };
 
             $scope.balances.update();
