@@ -19,91 +19,94 @@
  *
 */
 
-var exec = require('cordova/exec');
+if (typeof (window.tinyHippos) == "undefined") {
 
-var namedColors = {
-    "black": "#000000",
-    "darkGray": "#A9A9A9",
-    "lightGray": "#D3D3D3",
-    "white": "#FFFFFF",
-    "gray": "#808080",
-    "red": "#FF0000",
-    "green": "#00FF00",
-    "blue": "#0000FF",
-    "cyan": "#00FFFF",
-    "yellow": "#FFFF00",
-    "magenta": "#FF00FF",
-    "orange": "##FFA500",
-    "purple": "#800080",
-    "brown": "#A52A2A"
-};
+    var exec = require('cordova/exec');
 
-var StatusBar = {
+    var namedColors = {
+        "black": "#000000",
+        "darkGray": "#A9A9A9",
+        "lightGray": "#D3D3D3",
+        "white": "#FFFFFF",
+        "gray": "#808080",
+        "red": "#FF0000",
+        "green": "#00FF00",
+        "blue": "#0000FF",
+        "cyan": "#00FFFF",
+        "yellow": "#FFFF00",
+        "magenta": "#FF00FF",
+        "orange": "##FFA500",
+        "purple": "#800080",
+        "brown": "#A52A2A"
+    };
 
-    isVisible: true,
+    var StatusBar = {
+        isVisible: true,
 
-    overlaysWebView: function (doOverlay) {
-        exec(null, null, "StatusBar", "overlaysWebView", [doOverlay]);
-    },
+        overlaysWebView: function(doOverlay) {
+            exec(null, null, "StatusBar", "overlaysWebView", [doOverlay]);
+        },
 
-    styleDefault: function () {
-        // dark text ( to be used on a light background )
-        exec(null, null, "StatusBar", "styleDefault", []);
-    },
+        styleDefault: function() {
+            // dark text ( to be used on a light background )
+            exec(null, null, "StatusBar", "styleDefault", []);
+        },
 
-    styleLightContent: function () {
-        // light text ( to be used on a dark background )
-        exec(null, null, "StatusBar", "styleLightContent", []);
-    },
+        styleLightContent: function() {
+            // light text ( to be used on a dark background )
+            exec(null, null, "StatusBar", "styleLightContent", []);
+        },
 
-    styleBlackTranslucent: function () {
-        // #88000000 ? Apple says to use lightContent instead
-        exec(null, null, "StatusBar", "styleBlackTranslucent", []);
-    },
+        styleBlackTranslucent: function() {
+            // #88000000 ? Apple says to use lightContent instead
+            exec(null, null, "StatusBar", "styleBlackTranslucent", []);
+        },
 
-    styleBlackOpaque: function () {
-        // #FF000000 ? Apple says to use lightContent instead
-        exec(null, null, "StatusBar", "styleBlackOpaque", []);
-    },
+        styleBlackOpaque: function() {
+            // #FF000000 ? Apple says to use lightContent instead
+            exec(null, null, "StatusBar", "styleBlackOpaque", []);
+        },
 
-    backgroundColorByName: function (colorname) {
-        return StatusBar.backgroundColorByHexString(namedColors[colorname]);
-    },
+        backgroundColorByName: function(colorname) {
+            return StatusBar.backgroundColorByHexString(namedColors[colorname]);
+        },
 
-    backgroundColorByHexString: function (hexString) {
-        if (hexString.charAt(0) !== "#") {
-            hexString = "#" + hexString;
+        backgroundColorByHexString: function(hexString) {
+            if (hexString.charAt(0) !== "#") {
+                hexString = "#" + hexString;
+            }
+
+            if (hexString.length === 4) {
+                var split = hexString.split("");
+                hexString = "#" + split[1] + split[1] + split[2] + split[2] + split[3] + split[3];
+            }
+
+            exec(null, null, "StatusBar", "backgroundColorByHexString", [hexString]);
+        },
+
+        hide: function() {
+            exec(null, null, "StatusBar", "hide", []);
+            StatusBar.isVisible = false;
+        },
+
+        show: function() {
+            exec(null, null, "StatusBar", "show", []);
+            StatusBar.isVisible = true;
         }
 
-        if (hexString.length === 4) {
-            var split = hexString.split("");
-            hexString = "#" + split[1] + split[1] + split[2] + split[2] + split[3] + split[3];
-        }
-
-        exec(null, null, "StatusBar", "backgroundColorByHexString", [hexString]);
-    },
-
-    hide: function () {
-        exec(null, null, "StatusBar", "hide", []);
-        StatusBar.isVisible = false;
-    },
-
-    show: function () {
-        exec(null, null, "StatusBar", "show", []);
-        StatusBar.isVisible = true;
-    }
-
-};
+    };
 
 // prime it
-exec(function (res) {
-    if (typeof res == 'object') {
-        if (res.type == 'tap') {
-            cordova.fireWindowEvent('statusTap');
+    exec(function(res) {
+        if (typeof res == 'object') {
+            if (res.type == 'tap') {
+                cordova.fireWindowEvent('statusTap');
+            }
+        } else {
+            StatusBar.isVisible = res;
         }
-    } else {
-        StatusBar.isVisible = res;
-    }
-}, null, "StatusBar", "_ready", []);
+    }, null, "StatusBar", "_ready", []);
 
-module.exports = StatusBar;
+    module.exports = StatusBar;
+
+}
