@@ -10,7 +10,7 @@
                     var transactions = res.transactions;
                     $scope.$apply(function () {
                         transactions.forEach(function (transaction) {
-                            if (transaction.sender == clientSession.session().address) {
+                            if (transaction.destination == clientSession.session().address) {
                                 transaction.receive = true;
                             }
                         });
