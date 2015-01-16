@@ -26,13 +26,16 @@
 .float-right {
     float: right;
 }
-.balance-list {
+.balance-item {
     font-size: 140%;
 }
-.line-list {
+.line-item {
     font-size: 100%;
     color: #888;
 }
 .address small {
     font-size: 55%;
+}
+.transaction-item {
+    
 }
