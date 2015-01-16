@@ -2,6 +2,10 @@
     background-color: #E5E5E5;
 }
 
+.block {
+    display: block;
+}
+
 #login-logo {
     margin: 20px auto;
     width: 75%;
@@ -25,7 +29,7 @@
 .balance-list {
     font-size: 140%;
 }
-.address {
+.line-list {
     font-size: 100%;
     color: #888;
 }
