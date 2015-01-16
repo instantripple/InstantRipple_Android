@@ -1,12 +1,17 @@
 ﻿(function () {
     var irApp = angular.module('irApp');
 
-    irApp.factory('nameResolver', ['$http', function ($http) {
+    irApp.factory('nameResolver', ['$http', 'clientService', function ($http, clientService) {
         var nameCache = [];
 
         var resolveName = function (address, onResolve) {
             // First resolve with contacts.
-
+            var contacts = clientService.session().contacts;
+            var possibleAddress = Enumerable.From(contacts).FirstOrDefault(function (x) { return x.address == address; });
+            if (address) {
+                onResolve(possibleAddress);
+                return;
+            }
             // Then try Ripple identity.
             if (nameCache[address]) {
                 if (nameCache[address].name != null) {
