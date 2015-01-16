@@ -3,6 +3,14 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
     </ion-nav-buttons>
     <ion-content padding="false">
-        
+        <div class="list" ng-show="trustlines.linesByCurrency">
+            <div class="item full-width" ng-repeat="currency in trustlines.linesByCurrency | orderBy:'currency'">
+                <h3>{{currency.currency}}</h3>
+                <div class="item" ng-repeat="line in currency.lines | orderBy:'limit'">
+                    <div><strong address="line.issuer"></strong></div>
+                    <div>Trust used: {{line.balance | currency:currency.currency}} / {{line.limit | currency:currency.currency}}</div>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>
