@@ -2,7 +2,7 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('balancesController', [
-        '$scope', 'clientSession', '$timeout', 'rippleRemote', '$ionicLoading',
+        '$scope', 'clientSession', 'rippleRemote', '$ionicLoading',
         function ($scope, clientSession, rippleRemote, $ionicLoading) {
             $scope.balances = {};
 

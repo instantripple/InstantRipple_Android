@@ -23,5 +23,12 @@
     float: right;
 }
 .balance-list {
-    font-size: 130%;
+    font-size: 140%;
+}
+.address {
+    font-size: 100%;
+    color: #888;
+}
+.address small {
+    font-size: 55%;
 }

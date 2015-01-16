@@ -9,7 +9,6 @@
                 $scope.contacts.contacts = clientSession.session().contacts;
             };
             $scope.contacts.update();
-
         }
     ]);
 })();

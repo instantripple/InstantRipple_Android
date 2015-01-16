@@ -3,14 +3,14 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
     </ion-nav-buttons>
     <ion-content>
-        <div class="list card" ng-if="balances.balances" ng-repeat="balance in balances.balances">
+        <div class="list card" ng-show="balances.balances" ng-repeat="balance in balances.balances">
             <a class="item full-width balance-list" ng-click="balance.showLines = !balance.showLines">
                 <span class="text-left float-left"><strong>{{balance.currency}}</strong></span>
                 <span class="text-right float-right">{{balance.balance | currency: balance.currency}}</span>
             </a>
-            <ul class="item item-body list" ng-if="balance.currency != 'XRP' && balance.showLines">
+            <ul class="item item-body list" ng-if="balance.currency != 'XRP'" ng-show="balance.showLines">
                 <li class="item" ng-repeat="line in balance.lines | orderBy: line.balance">
-                    <span class="text-left float-left"><small>{{line.issuer}}</small></span>
+                    <span class="text-left float-left"><span address="{{line.issuer}}"></span></span>
                     <span class="text-right float-right">{{line.balance | currency: balance.currency}}</span>
                 </li>
             </ul>

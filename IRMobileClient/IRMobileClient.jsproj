@@ -118,6 +118,7 @@
     <Content Include="scripts\app\controllers\balancesController.js" />
     <Content Include="scripts\app\controllers\contactsController.js" />
     <Content Include="scripts\app\controllers\loginController.js" />
+    <Content Include="scripts\app\directives\address.js" />
     <Content Include="scripts\app\filters\currencyFilter.js" />
     <Content Include="scripts\app\services\analytics.js" />
     <Content Include="scripts\app\services\clientSession.js" />

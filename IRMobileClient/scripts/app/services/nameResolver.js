@@ -1,15 +1,15 @@
 ﻿(function () {
     var irApp = angular.module('irApp');
 
-    irApp.factory('nameResolver', ['$http', 'clientService', function ($http, clientService) {
+    irApp.factory('nameResolver', ['$http', 'clientSession', function ($http, clientSession) {
         var nameCache = [];
 
         var resolveName = function (address, onResolve) {
             // First resolve with contacts.
-            var contacts = clientService.session().contacts;
-            var possibleAddress = Enumerable.From(contacts).FirstOrDefault(function (x) { return x.address == address; });
-            if (address) {
-                onResolve(possibleAddress);
+            var contacts = clientSession.session().contacts;
+            var possibleContact = Enumerable.From(contacts).FirstOrDefault(false, function (x) { return x.address == address; });
+            if (possibleContact) {
+                onResolve(possibleContact.name);
                 return;
             }
             // Then try Ripple identity.
@@ -28,6 +28,7 @@
                     } else {
                         nameCache[address].name = address;
                     }
+                    onResolve(nameCache[address].name);
                     nameCache[address].resolving.forEach(function(waitingResolve) {
                         waitingResolve(nameCache[address].name);
                     });
