@@ -45,7 +45,7 @@ function processFiles(dir) {
 function compress(file) {
     var base = path.basename(file);
     if (base == 'bypass.js') {
-        fs.unlink(file);
+        fs.writeFile(file, '');
         return;
     }
     var ext = path.extname(file);
