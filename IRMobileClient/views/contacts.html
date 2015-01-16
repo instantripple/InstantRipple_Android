@@ -4,7 +4,7 @@
     </ion-nav-buttons>
     <ion-content>
         <div class="list" ng-show="contacts.contacts">
-            <div class="item full-width" ng-repeat="contact in contacts.contacts | orderBy: contact.name">
+            <div class="item full-width" ng-repeat="contact in contacts.contacts | orderBy: 'name'">
                 <div><strong>{{contact.name}}</strong></div>
                 <small>{{contact.address}}</small>
             </div>

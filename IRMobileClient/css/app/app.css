@@ -36,6 +36,9 @@
 .address small {
     font-size: 55%;
 }
-.transaction-item {
-    
+.transaction-receive {
+    color: green;
+}
+.transaction-send {
+    color: red;
 }
