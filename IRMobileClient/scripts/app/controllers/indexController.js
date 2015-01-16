@@ -20,6 +20,7 @@
 
                 if (fromState.name === 'login') {
                     $ionicHistory.clearHistory();
+                    $scope.userUsername = clientSession.session().username;
                 }
 
                 analytics.screenView(toState.name);

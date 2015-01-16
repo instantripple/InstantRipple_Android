@@ -40,9 +40,11 @@
     <script src="scripts/app/services/analytics.js"></script>
     <script src="scripts/app/controllers/indexController.js"></script>
     <script src="scripts/app/controllers/balancesController.js"></script>
+    <script src="scripts/app/controllers/sendController.js"></script>
     <script src="scripts/app/controllers/transactionsController.js"></script>
     <script src="scripts/app/controllers/loginController.js"></script>
     <script src="scripts/app/controllers/contactsController.js"></script>
+    <script src="scripts/app/controllers/trustlinesController.js"></script>
 </head>
     <body ng-app="irApp">
         <ion-side-menus ng-controller="indexController">
@@ -56,13 +58,17 @@
                     <div class="buttons">
                         <button menu-close class="button button-icon button-clear ion-android-arrow-dropleft"></button>
                     </div>
-                    <h1 class="title">Menu</h1>
+                    <h1 class="title">~{{userUsername}}</h1>
                 </ion-header-bar>
                 <ion-content padding="false">
                     <div class="list">
                         <a class="item item-icon-left" nav-clear menu-close ui-sref="balances">
                             <i class="icon ion-social-usd"></i>
                             Balances
+                        </a>
+                        <a class="item item-icon-left" nav-clear menu-close ui-sref="send">
+                            <i class="icon ion-android-send"></i>
+                            Make Payment
                         </a>
                         <a class="item item-icon-left" nav-clear menu-close ui-sref="transactions">
                             <i class="icon ion-arrow-swap"></i>
@@ -71,6 +77,10 @@
                         <a class="item item-icon-left" nav-clear menu-close ui-sref="contacts">
                             <i class="icon ion-person-stalker"></i>
                             Contacts
+                        </a>
+                        <a class="item item-icon-left" nav-clear menu-close ui-sref="trustlines">
+                            <i class="icon ion-fork-repo"></i>
+                            Trust Settings
                         </a>
                         <div class="item item-divider"></div>
                         <a class="item item-icon-left" nav-clear menu-close ui-sref="login">

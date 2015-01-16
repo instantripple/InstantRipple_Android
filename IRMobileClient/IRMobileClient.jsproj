@@ -203,6 +203,8 @@
     <Content Include="plugins\org.apache.cordova.statusbar\tests\tests.js" />
     <Content Include="plugins\org.apache.cordova.statusbar\www\statusbar.js" />
     <Content Include="res\native\android\keystore.dat" />
+    <Content Include="scripts\app\controllers\trustlinesController.js" />
+    <Content Include="scripts\app\controllers\sendController.js" />
     <Content Include="scripts\app\controllers\transactionsController.js" />
     <Content Include="scripts\app\controllers\indexController.js" />
     <Content Include="scripts\app\controllers\balancesController.js" />
@@ -220,6 +222,8 @@
     <Content Include="scripts\deps\moment.js" />
     <Content Include="scripts\deps\ripple-0.10.0.js" />
     <Content Include="scripts\deps\sjcl.js" />
+    <Content Include="views\trustlines.html" />
+    <Content Include="views\send.html" />
     <Content Include="views\transactions.html" />
     <Content Include="views\contacts.html" />
     <Content Include="views\balances.html" />

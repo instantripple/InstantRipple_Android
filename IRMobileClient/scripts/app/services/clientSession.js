@@ -15,7 +15,7 @@
         var start = function (username, address, secret, remoteBlob) {
             blob = remoteBlob;
             session = {
-                username: username,
+                username: username.toLowerCase(),
                 address: address,
                 secret: secret,
                 exists: true,

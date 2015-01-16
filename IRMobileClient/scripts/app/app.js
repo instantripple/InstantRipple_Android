@@ -21,6 +21,10 @@
                     templateUrl: 'views/balances.html',
                     controller: 'balancesController'
                 })
+                .state('send', {
+                    templateUrl: 'views/send.html',
+                    controller: 'sendController'
+                })
                 .state('transactions', {
                     templateUrl: 'views/transactions.html',
                     controller: 'transactionsController'
@@ -28,6 +32,10 @@
                 .state('contacts', {
                     templateUrl: 'views/contacts.html',
                     controller: 'contactsController'
+                })
+                .state('trustlines', {
+                    templateUrl: 'views/trustlines.html',
+                    controller: 'trustlinesController'
                 });
         }
     ]);
