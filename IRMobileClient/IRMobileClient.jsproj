@@ -113,7 +113,7 @@
     <Content Include="css\app\app.css" />
     <Content Include="images\ir-logo.png" />
     <Content Include="res\native\android\keystore.dat" />
-    <Content Include="scripts\app\controllers\transactionHistoryController.js" />
+    <Content Include="scripts\app\controllers\transactionsController.js" />
     <Content Include="scripts\app\controllers\indexController.js" />
     <Content Include="scripts\app\controllers\balancesController.js" />
     <Content Include="scripts\app\controllers\contactsController.js" />
@@ -130,6 +130,7 @@
     <Content Include="scripts\deps\moment.js" />
     <Content Include="scripts\deps\ripple-0.10.0.js" />
     <Content Include="scripts\deps\sjcl.js" />
+    <Content Include="views\transactions.html" />
     <Content Include="views\contacts.html" />
     <Content Include="views\balances.html" />
     <Content Include="views\login.html" />

@@ -4,9 +4,12 @@
     irApp.directive('address', ['nameResolver',
         function(nameResolver) {
             return {
-                restrict: "A",
-                link: function (scope, element, attributes) {
-                    var address = attributes.address;
+                restrict: 'A',
+                scope: {
+                  address: '='  
+                },
+                link: function (scope, element) {
+                    var address = scope.address;
                     element.addClass('address');
                     element.append('<small>' + address + '</small>');
                     nameResolver.resolve(address, function(name) {

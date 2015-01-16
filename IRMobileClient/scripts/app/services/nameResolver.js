@@ -7,7 +7,7 @@
         var resolveName = function (address, onResolve) {
             var session = clientSession.session();
             // Is it our address? No need to lookup.
-            if (address = session.address) {
+            if (address == session.address) {
                 onResolve(session.username);
                 return;
             }

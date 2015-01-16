@@ -10,7 +10,7 @@
             </a>
             <ul class="item item-body" ng-if="balance.currency != 'XRP'" ng-show="balance.showLines">
                 <li class="line-item block" ng-repeat="line in balance.lines | orderBy: line.balance">
-                    <span class="text-left float-left"><span address="{{line.issuer}}"></span></span>
+                    <span class="text-left float-left"><span address="line.issuer"></span></span>
                     <span class="text-right float-right">{{line.balance | currency: balance.currency}}</span>
                 </li>
             </ul>

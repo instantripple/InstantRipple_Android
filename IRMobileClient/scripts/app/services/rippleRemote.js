@@ -76,7 +76,9 @@
                         }
                         transactions.push({
                             amount: amount,
-                            destination: transaction.tx.Destination
+                            sender: transaction.tx.Account,
+                            destination: transaction.tx.Destination,
+                            time: new Date(ripple.utils.toTimestamp(transaction.tx.date))
                         });
                     }
                 });

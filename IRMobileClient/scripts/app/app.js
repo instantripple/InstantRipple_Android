@@ -1,5 +1,5 @@
 ﻿(function() {
-    var irApp = angular.module('irApp', ['ngCordova', 'ionic']);
+    var irApp = angular.module('irApp', ['ngCordova', 'ionic', 'angularMoment']);
 
     ionic.Platform.isFullScreen = true;
 
@@ -16,6 +16,10 @@
                 .state('balances', {
                     templateUrl: 'views/balances.html',
                     controller: 'balancesController'
+                })
+                .state('transactions', {
+                    templateUrl: 'views/transactions.html',
+                    controller: 'transactionsController'
                 })
                 .state('contacts', {
                     templateUrl: 'views/contacts.html',
