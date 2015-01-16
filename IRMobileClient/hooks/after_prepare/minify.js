@@ -43,6 +43,11 @@ function processFiles(dir) {
 }
 
 function compress(file) {
+    var base = path.basename(file);
+    if (base == 'bypass.js') {
+        fs.unlink(file);
+        return;
+    }
     var ext = path.extname(file);
     switch(ext) {
         case '.js':
