@@ -2,10 +2,11 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('transactionsController', [
-        '$scope', 'rippleRemote', 'clientSession', '$timeout',
-        function ($scope, rippleRemote, clientSession, $timeout) {
+        '$scope', 'rippleRemote', 'clientSession', '$ionicLoading',
+        function ($scope, rippleRemote, clientSession, $ionicLoading) {
             $scope.transactions = {};
             $scope.transactions.update = function () {
+                $ionicLoading.show();
                 rippleRemote.getAccountTransactions(clientSession.session().address, function (err, res) {
                     var transactions = res.transactions;
                     $scope.$apply(function () {
@@ -15,6 +16,7 @@
                             }
                         });
                         $scope.transactions.payments = transactions;
+                        $ionicLoading.hide();
                     });
                 });
             };
