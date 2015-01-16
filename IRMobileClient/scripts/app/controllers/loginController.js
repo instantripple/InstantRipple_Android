@@ -19,7 +19,6 @@
                     }
 
                     clientSession.start(res.username, res.blob.data.account_id, res.secret, res.blob);
-                    $ionicLoading.hide();
                     $state.go('balances');
                 });
             };

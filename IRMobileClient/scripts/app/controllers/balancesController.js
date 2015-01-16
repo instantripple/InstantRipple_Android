@@ -2,10 +2,11 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('balancesController', [
-        '$scope', 'clientSession', '$timeout', 'rippleRemote',
-        function ($scope, clientSession, $timeout, rippleRemote) {
+        '$scope', 'clientSession', '$timeout', 'rippleRemote', '$ionicLoading',
+        function ($scope, clientSession, $timeout, rippleRemote, $ionicLoading) {
             $scope.balances = {};
-            $scope.balances.update = function() {
+
+            $scope.balances.update = function () {
                 rippleRemote.getAccountInfo(clientSession.session().address, function(err, res) {
                     var xrpBalance = res.balance;
                     rippleRemote.getAccountLines(clientSession.session().address, function(err2, res2) {
@@ -25,8 +26,8 @@
                             balance: xrpBalance
                         });
                         $scope.$apply(function () {
-                            $scope.balances.lines = lines;
                             $scope.balances.balances = balances;
+                            $ionicLoading.hide();
                         });
                     });
                 });
@@ -34,14 +35,6 @@
             };
 
             $scope.balances.update();
-
-            //// CONTACTS
-            //$scope.contacts = {};
-            //$rootScope.contacts = $scope.contacts;
-            //$scope.contacts.update = function() {
-            //    $scope.contacts.contacts = clientSession.session().contacts;
-            //}();
-            //// END CONTACTS
         }
     ]);
 })();
