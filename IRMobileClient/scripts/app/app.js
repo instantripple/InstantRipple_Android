@@ -1,7 +1,11 @@
-﻿(function() {
+﻿(function () {
     var irApp = angular.module('irApp', ['ngCordova', 'ionic', 'angularMoment']);
 
-    ionic.Platform.isFullScreen = true;
+    ionic.Platform.ready(function () {
+        if (!window.tinyHippos) {
+            ionic.Platform.fullScreen(false, true);
+        }
+    });
 
     irApp.config([
         '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {

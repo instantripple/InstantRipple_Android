@@ -111,6 +111,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="css\app\app.css" />
+    <Content Include="css\deps\ionicons.css" />
     <Content Include="images\ir-logo.png" />
     <Content Include="plugins\org.apache.cordova.device\.fetch.json" />
     <Content Include="plugins\org.apache.cordova.device\CONTRIBUTING.md" />

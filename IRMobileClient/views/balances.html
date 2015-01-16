@@ -2,7 +2,7 @@
     <ion-nav-buttons side="left">
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
     </ion-nav-buttons>
-    <ion-content>
+    <ion-content padding="false">
         <div class="list card" ng-show="balances.balances" ng-repeat="balance in balances.balances">
             <a class="item full-width balance-item" ng-click="balance.showLines = !balance.showLines">
                 <span class="text-left float-left"><strong>{{balance.currency}}</strong></span>
@@ -15,5 +15,5 @@
                 </li>
             </ul>
         </div>
-</ion-content>
+    </ion-content>
 </ion-view>

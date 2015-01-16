@@ -2,7 +2,7 @@
     <ion-nav-buttons side="left">
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
     </ion-nav-buttons>
-    <ion-content>
+    <ion-content padding="false">
         <div class="list" ng-show="transactions.payments">
             <div class="item item-icon-left full-width" ng-repeat="transaction in transactions.payments | orderBy: '-time'"
                  ng-class="{'transaction-receive': transaction.receive , 'transaction-send': !transaction.receive}">

@@ -2,9 +2,11 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>Instant Ripple</title>
 
     <link href="css/deps/ionic.css" rel="stylesheet" />
+    <link href="css/deps/ionicons.css" rel="stylesheet" />
     <link href="css/app/app.css" rel="stylesheet" />
     
     <script>
@@ -43,37 +45,41 @@
     <script src="scripts/app/controllers/contactsController.js"></script>
 </head>
     <body ng-app="irApp">
-        <div ng-controller="indexController">
-            <ion-side-menus>
-                <ion-side-menu-content drag-content="false" edge-drag-threshold="false">
-                    <ion-nav-bar class="bar-positive nav-title-slide-ios7" ng-class="{invisible: !showHeader}">
-                    </ion-nav-bar>
-                    <ion-nav-view></ion-nav-view>
-                </ion-side-menu-content>
-                <ion-side-menu side="left">
-                    <ion-content>
-                        <div class="list">
-                            <a class="item item-icon-left" nav-clear menu-close ui-sref="balances">
-                                <i class="icon ion-social-usd"></i>
-                                Balances
-                            </a>
-                            <a class="item item-icon-left" nav-clear menu-close ui-sref="transactions">
-                                <i class="icon ion-arrow-swap"></i>
-                                Transactions
-                            </a>
-                            <a class="item item-icon-left" nav-clear menu-close ui-sref="contacts">
-                                <i class="icon ion-person-stalker"></i>
-                                Contacts
-                            </a>
-                            <div class="item item-divider"></div>
-                            <a class="item item-icon-left" nav-clear menu-close ui-sref="login">
-                                <i class="icon ion-log-out"></i>
-                                Logout
-                            </a>
-                        </div>
-                    </ion-content>
-                </ion-side-menu>
-            </ion-side-menus>
-        </div>
+        <ion-side-menus ng-controller="indexController">
+            <ion-side-menu-content drag-content="false" edge-drag-threshold="false">
+                <ion-nav-bar class="bar-positive" ng-class="{invisible: !showHeader}">
+                </ion-nav-bar>
+                <ion-nav-view></ion-nav-view>
+            </ion-side-menu-content>
+            <ion-side-menu side="left">
+                <ion-header-bar align-title="left" class="bar-calm">
+                    <div class="buttons">
+                        <button menu-close class="button button-icon button-clear ion-android-arrow-dropleft"></button>
+                    </div>
+                    <h1 class="title">Menu</h1>
+                </ion-header-bar>
+                <ion-content padding="false">
+                    <div class="list">
+                        <a class="item item-icon-left" nav-clear menu-close ui-sref="balances">
+                            <i class="icon ion-social-usd"></i>
+                            Balances
+                        </a>
+                        <a class="item item-icon-left" nav-clear menu-close ui-sref="transactions">
+                            <i class="icon ion-arrow-swap"></i>
+                            Transactions
+                        </a>
+                        <a class="item item-icon-left" nav-clear menu-close ui-sref="contacts">
+                            <i class="icon ion-person-stalker"></i>
+                            Contacts
+                        </a>
+                        <div class="item item-divider"></div>
+                        <a class="item item-icon-left" nav-clear menu-close ui-sref="login">
+                            <i class="icon ion-log-out"></i>
+                            Logout
+                        </a>
+                    </div>
+                </ion-content>
+            </ion-side-menu>
+        </ion-side-menus>
     </body>
 </html>
