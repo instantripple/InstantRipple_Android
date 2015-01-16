@@ -2,8 +2,10 @@
     var irApp = angular.module('irApp', ['ngCordova', 'ionic', 'angularMoment']);
 
     ionic.Platform.ready(function () {
-        if (!window.tinyHippos) {
-            ionic.Platform.fullScreen(false, true);
+        if (typeof (window.tinyHippos) == "undefined") {
+            if (!window.tinyHippos) {
+                ionic.Platform.fullScreen(false, true);
+            }
         }
     });
 

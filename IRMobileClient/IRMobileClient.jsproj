@@ -112,7 +112,9 @@
   <ItemGroup>
     <Content Include="css\app\app.css" />
     <Content Include="css\deps\ionicons.css" />
+    <Content Include="hooks\after_prepare\minify.js" />
     <Content Include="images\ir-logo.png" />
+    <Content Include="package.json" />
     <Content Include="plugins\org.apache.cordova.device\.fetch.json" />
     <Content Include="plugins\org.apache.cordova.device\CONTRIBUTING.md" />
     <Content Include="plugins\org.apache.cordova.device\doc\de\index.md" />

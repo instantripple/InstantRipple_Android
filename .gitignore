@@ -214,4 +214,8 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+node_modules/
 IRMobileClient/res/native/android/keystore.dat
+
+

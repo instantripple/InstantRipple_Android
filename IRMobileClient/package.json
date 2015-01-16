@@ -1,0 +1,6 @@
+{
+  "name": "IRMobileClient",
+  "devDependencies": {
+    "cordova-minify": "0.0.12"
+  }
+}
