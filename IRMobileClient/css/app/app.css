@@ -1,8 +1,4 @@
-﻿body {
-    background-color: #E5E5E5;
-}
-
-.block {
+﻿.block {
     display: block;
 }
 
@@ -41,4 +37,27 @@
 }
 .transaction-send {
     color: red;
+}
+.modal-popup {
+    font-size: 140%;
+}
+.modal-clear {
+    background-color: #646464;
+    background-color: rgba(100, 100, 100, 0.6);
+}
+.modal-footer {
+    font-size: 90%;
+}
+.modal-center {
+    width: 80%;
+    margin: 30px auto;
+}
+.address-display {
+    font-size: 120%;
+}
+.currency-display-value {
+    font-size: 240%;
+}
+.currency-display-currency {
+    font-size: 120%;
 }

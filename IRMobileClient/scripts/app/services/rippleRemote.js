@@ -38,6 +38,7 @@
                         amount: amount,
                         sender: transaction.transaction.Account
                     });
+                    $rootScope.$broadcast('remote-updated');
                 }
             });
         }

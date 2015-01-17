@@ -33,6 +33,10 @@
                     scope: modalScope
                 }).then(function (modal) {
                     modal.show();
+                    modalScope.close = function() {
+                        modal.hide();
+                        modal.remove();
+                    }
                 });
             });
         }

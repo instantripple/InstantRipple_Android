@@ -1,8 +1,17 @@
-﻿<ion-modal-view>
-    <ion-header-bar>
-        <h1 class="title">Payment received</h1>
+﻿<ion-modal-view class="modal-popup modal-clear">
+    <ion-header-bar class="bar-energized">
+        <h1 class="title">Payment Received</h1>
     </ion-header-bar>
-    <ion-content>
-        Received {{transaction.amount.value | currency}} {{transaction.amount.currency}} from <span address="transaction.sender"></span>.
+    <ion-content padding="true">
+        <div class="modal-center card">
+            <div class="address-display item item-text-wrap text-center"><span address="transaction.sender"></span></div>
+            <div class="item item-text-wrap text-center">has just sent you</div>
+            <div class="item item-text-wrap text-center"><span class="currency-display-value">{{transaction.amount.value | currency}}</span> <span class="currency-display-currency">{{transaction.amount.currency}}</span></div>
+            <div class="item item-divider">
+                <button class="button button-block button-energized modal-footer" ng-click="close();">
+                    Close
+                </button>
+            </div>
+        </div>
     </ion-content>
 </ion-modal-view>
