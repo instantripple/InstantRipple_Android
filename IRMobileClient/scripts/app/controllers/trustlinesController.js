@@ -5,9 +5,12 @@
         '$scope', 'rippleRemote', 'clientSession', '$ionicLoading',
         function ($scope, rippleRemote, clientSession, $ionicLoading) {
             $scope.trustlines = {};
+            var firstLoad = true;
 
-            $scope.trustlines.update = function () {
-                $ionicLoading.show();
+            $scope.trustlines.update = _.throttle(function () {
+                if (firstLoad) {
+                    $ionicLoading.show();
+                }
                 rippleRemote.getAccountLines(clientSession.session().address, function(err, res) {
                     var lines = res.lines;
                     var linesByCurrency = Enumerable.From(lines)
@@ -19,12 +22,22 @@
                         }).ToArray();
                     $scope.$apply(function() {
                         $scope.trustlines.linesByCurrency = linesByCurrency;
-                        $ionicLoading.hide();
                     });
+                    if (firstLoad) {
+                        firstLoad = false;
+                        $ionicLoading.hide();
+                    }
                 });
-            };
+            }, 2000);
 
             $scope.trustlines.update();
+
+            $scope.$on('remote-updated', function () {
+                $scope.trustlines.update();
+            });
+            $scope.$on('remote-invalidated', function () {
+                $scope.trustlines.update();
+            });
         }
     ]);
 })();

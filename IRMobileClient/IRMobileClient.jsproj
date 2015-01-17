@@ -226,6 +226,7 @@
     <Content Include="scripts\deps\moment.js" />
     <Content Include="scripts\deps\ripple-0.10.0.js" />
     <Content Include="scripts\deps\sjcl.js" />
+    <Content Include="scripts\deps\underscore.js" />
     <Content Include="views\modal-received.html" />
     <Content Include="views\trustlines.html" />
     <Content Include="views\send.html" />

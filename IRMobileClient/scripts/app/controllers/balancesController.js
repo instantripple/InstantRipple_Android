@@ -38,11 +38,11 @@
             }, 2000);
             $scope.balances.update();
 
-            $scope.on('remote-updated', function() {
-                $scope.balanes.update();
+            $scope.$on('remote-updated', function() {
+                $scope.balances.update();
             });
-            $scope.on('remote-invalidated', function () {
-                $scope.balanes.update();
+            $scope.$on('remote-invalidated', function () {
+                $scope.balances.update();
             });
         }
     ]);
