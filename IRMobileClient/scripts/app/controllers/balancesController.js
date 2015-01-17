@@ -7,7 +7,7 @@
             $scope.balances = {};
             var firstLoad = true;
 
-            $scope.balances.update = _.debounce(function() {
+            $scope.balances.update = _.throttle(function () {
                 rippleRemote.getAccountInfo(clientSession.session().address, function(err, res) {
                     var xrpBalance = res.balance;
                     rippleRemote.getAccountLines(clientSession.session().address, function(err2, res2) {
@@ -35,7 +35,7 @@
                         }
                     });
                 });
-            }, 1000);
+            }, 2000);
             $scope.balances.update();
 
             $scope.on('remote-updated', function() {
