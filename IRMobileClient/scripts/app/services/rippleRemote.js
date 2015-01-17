@@ -22,7 +22,22 @@
             account = remote.account(address);
             account.on('transaction-inbound', function (transaction) {
                 if (transaction.validated) {
-                    $rootScope.emit('transaction-receive', transaction);
+                    var amount;
+                    if (transaction.transaction.Amount.currency) {
+                        amount = {
+                            currency: transaction.transaction.Amount.currency,
+                            value: parseFloat(transaction.transaction.Amount.value)
+                        };
+                    } else {
+                        amount = {
+                            currency: 'XRP',
+                            value: parseFloat(transaction.transaction.Amount / 1000000)
+                        };
+                    }
+                    $rootScope.$broadcast('transaction-received', {
+                        amount: amount,
+                        sender: transaction.transaction.Account
+                    });
                 }
             });
         }

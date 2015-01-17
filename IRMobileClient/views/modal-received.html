@@ -1,0 +1,8 @@
+﻿<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">Payment received</h1>
+    </ion-header-bar>
+    <ion-content>
+        Received {{transaction.amount.value | currency}} {{transaction.amount.currency}} from <span address="transaction.sender"></span>.
+    </ion-content>
+</ion-modal-view>
