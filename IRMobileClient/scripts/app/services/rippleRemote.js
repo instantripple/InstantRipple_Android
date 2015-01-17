@@ -1,7 +1,7 @@
 ﻿(function () {
     var irApp = angular.module('irApp');
 
-    irApp.factory('rippleRemote', function () {
+    irApp.factory('rippleRemote', ['$rootScope', function ($rootScope) {
         var remote = new ripple.Remote({
             servers: [{
                 host: 's-west.ripple.com',
@@ -16,6 +16,22 @@
             max_fee: 100000
         });
         remote.connect();
+
+        var account = null;
+        var setUser = function(address) {
+            account = remote.account(address);
+            account.on('transaction-inbound', function (transaction) {
+                if (transaction.validated) {
+                    $rootScope.emit('transaction-receive', transaction);
+                }
+            });
+        }
+        var clearUser = function () {
+            if (account != null) {
+                account.removeAllListeners('transaction-inbound');
+                account = null;
+            }
+        }
 
         var requestAccountInfo = function(address, callback) {
             remote.requestAccountInfo({
@@ -106,11 +122,13 @@
         };
 
         return {
+            setUser: setUser,
+            clearUser: clearUser,
             getAccountInfo: requestAccountInfo,
             getAccountLines: requestAccountLines,
             getAccountTransactions: requestAccountTransactions,
             checkSend: checkSend,
             commitSend: commitSend
         };
-    });
+    }]);
 })();

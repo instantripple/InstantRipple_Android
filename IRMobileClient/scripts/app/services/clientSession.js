@@ -1,7 +1,7 @@
 ﻿(function() {
     var irApp = angular.module('irApp');
 
-    irApp.factory('clientSession', [function () {
+    irApp.factory('clientSession', ['rippleRemote', function (rippleRemote) {
         var session = {};
         var blob;
 
@@ -9,6 +9,7 @@
             session = {
                 exists: false
             };
+            rippleRemote.clearUser();
         };
         createEmptySession();
 
@@ -25,6 +26,7 @@
                 removeContact: removeContactFromBlob
             };
 
+            rippleRemote.setUser(address);
             updateContactsView();
         };
 
