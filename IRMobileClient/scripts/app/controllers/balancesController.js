@@ -5,8 +5,9 @@
         '$scope', 'clientSession', 'rippleRemote', '$ionicLoading',
         function ($scope, clientSession, rippleRemote, $ionicLoading) {
             $scope.balances = {};
+            var firstLoad = true;
 
-            $scope.balances.update = function () {
+            $scope.balances.update = _.debounce(function() {
                 rippleRemote.getAccountInfo(clientSession.session().address, function(err, res) {
                     var xrpBalance = res.balance;
                     rippleRemote.getAccountLines(clientSession.session().address, function(err2, res2) {
@@ -16,7 +17,7 @@
                                 return {
                                     currency: key,
                                     balance: x.Sum('$.balance'),
-                                    lines: Enumerable.From(lines).Where(function (y) { return y.currency == key; }).ToArray(),
+                                    lines: Enumerable.From(lines).Where(function(y) { return y.currency == key; }).ToArray(),
                                     showLines: false
                                 };
                             })
@@ -25,15 +26,24 @@
                             currency: 'XRP',
                             balance: xrpBalance
                         });
-                        $scope.$apply(function () {
+                        $scope.$apply(function() {
                             $scope.balances.balances = balances;
-                            $ionicLoading.hide();
                         });
+                        if (firstLoad) {
+                            firstLoad = false;
+                            $ionicLoading.hide();
+                        }
                     });
                 });
-            };
-
+            }, 1000);
             $scope.balances.update();
+
+            $scope.on('remote-updated', function() {
+                $scope.balanes.update();
+            });
+            $scope.on('remote-invalidated', function () {
+                $scope.balanes.update();
+            });
         }
     ]);
 })();
