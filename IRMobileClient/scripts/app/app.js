@@ -1,5 +1,5 @@
 ﻿(function () {
-    var irApp = angular.module('irApp', ['ngCordova', 'ionic', 'angularMoment']);
+    var irApp = angular.module('irApp', ['ngCordova', 'ionic', 'angularMoment', 'autocomplete']);
 
     ionic.Platform.ready(function () {
         if (typeof (window.tinyHippos) == "undefined") {

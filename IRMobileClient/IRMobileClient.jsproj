@@ -111,6 +111,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="css\app\app.css" />
+    <Content Include="css\deps\autocomplete.css" />
     <Content Include="css\deps\ionicons.css" />
     <Content Include="hooks\after_prepare\minify.js" />
     <Content Include="images\ir-logo.png" />
@@ -220,6 +221,7 @@
     <Content Include="scripts\app\services\rippleRemote.js" />
     <Content Include="scripts\bypass.js" />
     <Content Include="scripts\deps\angular-moment.js" />
+    <Content Include="scripts\deps\autocomplete.js" />
     <Content Include="scripts\deps\linq.js" />
     <Content Include="scripts\deps\moment.js" />
     <Content Include="scripts\deps\ripple-0.10.0.js" />
