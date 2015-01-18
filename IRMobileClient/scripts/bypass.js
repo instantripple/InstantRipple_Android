@@ -1,4 +1,4 @@
-﻿// This file is removed for release builds.
+﻿// This file is truncated for release builds.
 (function () {
     if(typeof (window.tinyHippos) != "undefined") {
         window.bypass = true;
