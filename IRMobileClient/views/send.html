@@ -3,8 +3,11 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
     </ion-nav-buttons>
     <ion-content padding="false">
-        <div ng-if="send.step == 1">
-            <autocomplete ng-model="send.recipient" data="send.recipients" attr-placeholder="recipient"></autocomplete>
+        <div ng-show="send.step == 1">
+            <autocomplete ng-model="send.recipient" data="send.recipients" attr-placeholder="send to..."></autocomplete>
+            <button class="button button-full button-calm" ng-click="send.onRecipientSelected();">
+                Next
+            </button>
         </div>
     </ion-content>
 </ion-view>

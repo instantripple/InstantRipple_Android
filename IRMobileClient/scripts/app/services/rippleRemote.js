@@ -128,22 +128,24 @@
             });
         };
 
-        var checkSend = function(destination, amount, callback) {
-            requestAccountLines(destination, function(err, res) {
-                
-            });
-        };
-
-        var commitSend = function(sender, destination, amount, callback) {
+        var send = function(sender, destination, amount, callback) {
             var payment = remote.createTransaction('Payment', {
                 account: sender,
                 destination: destination,
-                amount: amount
+                amount: toRemoteAmount(amount)
             });
             payment.submit(function (err, res) {
                 callback(err, res);
             });
         };
+
+        var startPathFind = function (sender, destination, amount) {
+            return remote.path_find(sender, destination, toRemoteAmount(amount));
+        };
+
+        function toRemoteAmount(amount) {
+            return ripple.Amount.from_human(String(amount.value) + ' ' + amount.currency);
+        }
 
         return {
             setUser: setUser,
@@ -151,8 +153,8 @@
             getAccountInfo: requestAccountInfo,
             getAccountLines: requestAccountLines,
             getAccountTransactions: requestAccountTransactions,
-            checkSend: checkSend,
-            commitSend: commitSend
+            send: send,
+            startPathFind: startPathFind
         };
     }]);
 })();
