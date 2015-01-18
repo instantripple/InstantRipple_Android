@@ -52,6 +52,31 @@ p.larger{
 	list-style: none;
 	padding: 10px 0 0 70px;
 }
+.features li {
+    padding: 5px 0 0 0;
+}
+.team-person {
+    float: left;
+}
+.team-person p {
+    text-align: left;
+    padding: 0 20px;
+    font-size: 1.6em;
+}
+.team-person p strong {
+    font-size: 1.8em;
+}
+.team-person p .position-title {
+    font-size: 1.4em;
+}
+.testing {
+    padding-left: 50px;
+    color: red;
+}
+footer {
+    clear: both;
+}
+
 @media screen and (max-width: 750px){
 	#header{
 		background-image: url(headbackrepeater.jpg);
@@ -100,9 +125,6 @@ p.larger{
 	.right{
 		width: 47.5%;
 		float: right;
-	}
-	.testing{
-		margin-left: 25%;
 	}
 	.team-person{
 		width: 32.9%;
@@ -179,10 +201,6 @@ p.larger{
 	width: 100%;
 	max-width: 1000px;
 	margin: 0 auto;
-}
-
-.small-text{
-	font-size: 1.5em;
 }
 
 footer p{
