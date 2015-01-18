@@ -1,0 +1,196 @@
+html{
+	font-family: helvetica, arial, sans-serif;
+	background-color: #FFF;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	font-weight: 100;
+}
+
+body{
+	font-size: 62.5%;
+	color: #212121;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+h1{
+	font-size: 4em;
+	font-weight: 100;
+}
+
+h1.slogan{
+	margin-bottom: 10px; 
+}
+
+h2{
+	color: #0b65a4;
+	font-size: 3.5em;	
+}
+
+p,
+li{
+	font-size: 2em;
+}
+
+p.larger{
+	font-size: 2.25em;
+}
+
+.why-list{
+	margin-bottom: 5em;
+}
+.why-list li{
+	color: #0b65a4;
+	font-weight: 900;
+	font-size: 4em;
+	background-image: url(check.jpg);
+	background-size: 70px 50px;
+	background-position: left center;
+	background-repeat: no-repeat;
+	list-style: none;
+	padding: 10px 0 0 70px;
+}
+@media screen and (max-width: 750px){
+	#header{
+		background-image: url(headbackrepeater.jpg);
+		background-repeat: repeat-x;
+		background-position: center top;
+		background-size: 100% 100%;
+	}
+	#logo{
+		padding-top: 70px;
+	}
+}
+
+@media screen and (min-width: 750px){
+	html{
+		text-align: left;
+	}
+	#logo{
+		width: 55%;
+		float: left;
+	}
+	#header{
+		background-image: url(headbackrepeater.jpg);
+		background-repeat: repeat-x;
+		background-position: center top;
+		background-size: 100% 100%;
+		height: 325px;
+	}
+	#header .page_content{
+		background-image: url(phone.png), url(headback.jpg);
+		background-repeat: no-repeat, no-repeat;
+		background-position: 60% top, center top;
+		background-size: 231px 325px, 1000px 325px;
+		height: 325px;
+		padding-top: 55px;
+	}
+	#headerRight{
+		padding-top: 100px;
+		float: right;
+		width: 20%;
+	}
+
+	.left{
+		width: 47.5%;
+		float: left;
+	}
+	.right{
+		width: 47.5%;
+		float: right;
+	}
+	.testing{
+		margin-left: 25%;
+	}
+	.team-person{
+		width: 32.9%;
+		display: inline-block;
+		margin: 0 auto;
+	}
+	.features h2{
+		width: 47.5%;
+		float: left;
+	}
+	.features .left{
+		clear: left;
+	}
+	.features .right{
+		margin-top: -6em;
+	}
+}
+
+.page_content{
+	padding: 0 15px;
+}
+
+#headerRight img.iripple{
+	width: 73px;
+	height: auto;
+	display: block;
+	margin: 10px auto;
+}
+#headerRight img.play{
+	width: 139px;
+	height: auto;
+	display: block;
+	margin: 0 auto;
+}
+.features{
+	background: #f2f2f2;
+	padding: 45px 0;
+	border-bottom: 2px solid #aeaeae;
+	border-top: 2px solid #aeaeae;
+}
+
+#team{
+	text-align: center;
+	margin: 0 auto;
+	clear: both;
+}
+#team h2{
+	text-align: left;
+}
+
+.team-person .picture{
+	background: #CCC;
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+	border-radius: 50%;
+	margin: 0 auto;
+}
+
+#logo img{
+	width: 250px;
+	height: auto;
+}
+
+.indent{
+	margin: 0 0 0 1.2em;
+}
+
+.clear{
+	clear: both;
+}
+
+.page_content{
+	width: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.small-text{
+	font-size: 1.5em;
+}
+
+footer p{
+	font-size: 1.5em;
+	text-align: center;
+}
+
+.ripple-logo{
+	width: 106px;
+	height: auto;
+}
