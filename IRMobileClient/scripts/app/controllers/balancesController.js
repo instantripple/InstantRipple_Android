@@ -2,8 +2,8 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('balancesController', [
-        '$scope', 'clientSession', 'rippleRemote', '$ionicLoading',
-        function ($scope, clientSession, rippleRemote, $ionicLoading) {
+        '$scope', 'clientSession', 'rippleRemote', '$ionicLoading', '$timeout',
+        function ($scope, clientSession, rippleRemote, $ionicLoading, $timeout) {
             $scope.balances = {};
             var firstLoad = true;
 
@@ -26,7 +26,7 @@
                             currency: 'XRP',
                             balance: xrpBalance
                         });
-                        $scope.$apply(function() {
+                        $timeout(function () {
                             $scope.balances.balances = balances;
                         });
                         if (firstLoad) {

@@ -2,8 +2,8 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('transactionsController', [
-        '$scope', 'rippleRemote', 'clientSession', '$ionicLoading',
-        function ($scope, rippleRemote, clientSession, $ionicLoading) {
+        '$scope', 'rippleRemote', 'clientSession', '$ionicLoading', '$timeout',
+        function ($scope, rippleRemote, clientSession, $ionicLoading, $timeout) {
             var firstLoad = true;
 
             $scope.transactions = {};
@@ -18,7 +18,7 @@
                             transaction.receive = true;
                         }
                     });
-                    $scope.$apply(function() {
+                    $timeout(function () {
                         $scope.transactions.payments = transactions;
                     });
                     if (firstLoad) {

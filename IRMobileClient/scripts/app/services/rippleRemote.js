@@ -132,7 +132,7 @@
             var payment = remote.createTransaction('Payment', {
                 account: sender,
                 destination: destination,
-                amount: toRemoteAmount(amount)
+                amount: amount
             });
             payment.submit(function (err, res) {
                 callback(err, res);
@@ -140,12 +140,11 @@
         };
 
         var startPathFind = function (sender, destination, amount) {
-            return remote.path_find(sender, destination, toRemoteAmount(amount));
+            amount.issuer = destination;
+            amount.value = String(amount.value);
+            amount = ripple.Amount.from_json(amount);
+            return remote.path_find(sender, destination, amount);
         };
-
-        function toRemoteAmount(amount) {
-            return ripple.Amount.from_human(String(amount.value) + ' ' + amount.currency);
-        }
 
         return {
             setUser: setUser,

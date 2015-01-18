@@ -4,7 +4,49 @@
     irApp.factory('nameResolver', ['$http', 'clientSession', function ($http, clientSession) {
         var nameCache = [];
 
+        var resolveAddress = function(name, onResolve) {
+            var session = clientSession.session();
+            // Is it our name? No need to lookup.
+            if (name == session.name) {
+                onResolve(session.address);
+                return;
+            }
+            // Next resolve with contacts.
+            var possibleContact = Enumerable.From(session.contacts).FirstOrDefault(false, function (x) { return x.name == name; });
+            if (possibleContact) {
+                onResolve(possibleContact.address);
+                return;
+            }
+            // Then try Ripple identity.
+            if (nameCache[name]) {
+                if (nameCache[name].address != null) {
+                    onResolve(nameCache[name].address);
+                } else {
+                    nameCache[name].resolving.push(onResolve);
+                }
+            } else {
+                nameCache[name] = { address: null, resolving: [] };
+                $http.get('https://id.ripple.com/v1/user/' + name).success(function (res) {
+                    if (res.exists) {
+                        nameCache[name].address = res.address;
+                    } else {
+                        nameCache[name].address = false;
+                    }
+                    onResolve(nameCache[name].address);
+                    nameCache[name].resolving.forEach(function (waitingResolve) {
+                        waitingResolve(nameCache[name].address);
+                    });
+                    nameCache[name].resolving = [];
+                });
+            }
+        };
+
         var resolveName = function (address, onResolve) {
+            if (address.indexOf('~') == 0) {
+                resolveAddress(address, onResolve);
+                return;
+            }
+
             var session = clientSession.session();
             // Is it our address? No need to lookup.
             if (address == session.address) {

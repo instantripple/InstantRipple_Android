@@ -2,8 +2,8 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('trustlinesController', [
-        '$scope', 'rippleRemote', 'clientSession', '$ionicLoading',
-        function ($scope, rippleRemote, clientSession, $ionicLoading) {
+        '$scope', 'rippleRemote', 'clientSession', '$ionicLoading', '$timeout',
+        function ($scope, rippleRemote, clientSession, $ionicLoading, $timeout) {
             $scope.trustlines = {};
             var firstLoad = true;
 
@@ -20,7 +20,7 @@
                                 lines: Enumerable.From(lines).Where(function(y) { return y.currency == key; }).ToArray(),
                             };
                         }).ToArray();
-                    $scope.$apply(function() {
+                    $timeout(function () {
                         $scope.trustlines.linesByCurrency = linesByCurrency;
                     });
                     if (firstLoad) {

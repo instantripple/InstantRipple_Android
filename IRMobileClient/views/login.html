@@ -15,7 +15,7 @@
                 </label>
             </div>
             <div>
-                <button type="submit" ng-disabled="(!loginForm.username || !loginForm.password) && bypass" class="button button-block button-positive"><i class="ion-log-in"></i></button>
+                <button type="submit" ng-disabled="!(loginForm.username && loginForm.password) && !loginForm.bypass" class="button button-block button-positive"><i class="ion-log-in"></i></button>
             </div>
             <div class="list list-inset">
                 <div ng-if="loginForm.isError" class="item item-text-wrap item-energized"><p>We could not log you in using those details, please try again.</p></div>

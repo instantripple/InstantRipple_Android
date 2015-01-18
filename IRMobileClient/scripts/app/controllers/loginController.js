@@ -6,6 +6,10 @@
         function ($scope, analytics, $state, clientSession, $ionicLoading) {
             $scope.loginForm = {};
 
+            if (window.bypass) {
+                $scope.loginForm.bypass = true;
+            }
+
             $scope.login = function () {
                 $scope.loginForm.isError = false;
                 $ionicLoading.show();
