@@ -64,6 +64,21 @@
                             }
                             break;
                         }
+                    case 2:
+                        {
+                            if (step == 1) {
+                                if ($scope.send.currencies) {
+                                    delete $scope.send.currencies;
+                                }
+                                if ($scope.send.requiresDestinationTag) {
+                                    delete $scope.send.requiresDestinationTag;
+                                }
+                                if ($scope.send.destinationTag) {
+                                    delete $scope.send.destinationTag;
+                                }
+                            }
+                            break;
+                        }
                     }
                 }
 
@@ -76,14 +91,29 @@
                     }
                 case 2:
                     {
-                        // Scan accepted currencies.
-                        rippleRemote.getAccountLines($scope.send.recipientAddress, function (err, res) {
-                            var currencies = Enumerable.From(res.lines).Select('$.currency').Distinct().ToArray();
-                            currencies.unshift('XRP');
-                            $timeout(function() {
-                                $scope.send.currencies = currencies;
-                                $scope.send.currency = 'XRP';
-                            });
+                        // Check if account funded & if it requires a destination tag.
+                        rippleRemote.getAccountInfo($scope.send.recipientAddress, function(err, res) {
+                            var xrpBalance = res.balance;
+                            if (xrpBalance == 0) {
+                                // The account is unfunded.
+                                $timeout(function () {
+                                        $scope.send.unfunded = true;
+                                        $scope.send.currencies = ['XRP'];
+                                        $scope.send.currency = 'XRP';
+                                    });
+                            } else {
+                                // Scan accepted currencies.
+                                rippleRemote.getAccountLines($scope.send.recipientAddress, function (err2, res2) {
+                                    var currencies = Enumerable.From(res2.lines).Select('$.currency').Distinct().ToArray();
+                                    currencies.unshift('XRP');
+                                    $timeout(function () {
+                                        $scope.send.currencies = currencies;
+                                        $scope.send.currency = 'XRP';
+                                    });
+                                });
+                                // Check for destination tag requirement.
+                                $scope.send.requiresDestinationTag = res.requiresDestinationTag;
+                            }
                         });
                         $scope.send.step = 2;
                         break;
@@ -196,6 +226,12 @@
             $scope.reset = function () {
                 if ($scope.send.recipient) {
                     delete $scope.send.recipient;
+                }
+                if ($scope.send.destinationTag) {
+                    delete $scope.send.destinationTag;
+                }
+                if ($scope.send.requiresDestinationTag) {
+                    delete $scope.send.requiresDestinationTag;
                 }
                 if ($scope.send.pathFinder) {
                     $scope.send.pathFinder.close();
