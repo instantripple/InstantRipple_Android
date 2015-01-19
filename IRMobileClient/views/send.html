@@ -3,29 +3,32 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
     </ion-nav-buttons>
     <ion-content padding="false">
-        <div ng-show="send.show >= 2"><p>{{send.recipient}}</p></div>
+        <h3 class="text-center full-width padding-top">Send to</h3>
         <div ng-show="send.step == 1">
-            <autocomplete ng-model="send.recipient" data="send.recipients" attr-placeholder="send to..." on-type="send.checkRecipient();"></autocomplete>
+            <autocomplete ng-model="send.recipient" data="send.recipients" attr-placeholder="Contact or ~Username" on-type="send.checkRecipient();"></autocomplete>
             <button class="button button-full button-calm" ng-disabled="!send.recipientIsValid" ng-click="send.onRecipientSelected();">
                 Next
             </button>
         </div>
         <div ng-show="send.step == 2">
-            <label class="item item-input">
-                <span class="input-label">Amount</span>
-                <input type="number" ng-model="send.amount" />
-            </label>
-            <label class="item item-input item-select">
-                <span class="input-label">Currency</span>
-                <select ng-model="send.currency" ng-options="currency for currency in send.currencies"></select>
-            </label>
-            <button class="button button-full button-calm" ng-disabled="!send.amount" ng-click="send.onAmountSelected();">
-                Next
-            </button>
+            <div class="address-display text-center full-width padding-top">{{send.recipient}}</div>
+            <div>
+                <label class="item item-input">
+                    <i class="icon ion-chevron-right"></i>
+                    <input type="number" ng-model="send.amount" />
+                </label>
+                <label class="item item-input item-select">
+                    <i class="icon ion-cash"></i>
+                    <select ng-model="send.currency" ng-options="currency for currency in send.currencies"></select>
+                </label>
+                <button class="button button-full button-calm" ng-disabled="!send.amount" ng-click="send.onAmountSelected();">
+                    Next
+                </button>
+            </div>
         </div>
         <div ng-show="send.step == 3">
             <div ng-repeat="path in send.paths">
-                <span>{{path.source_currency.currency}}</span>
+                <span>{{path.amount.value | currency: path.amount.currecy}} {{path.amount.currency}}</span>
             </div>
         </div>
     </ion-content>

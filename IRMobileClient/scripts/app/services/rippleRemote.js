@@ -155,8 +155,12 @@
         };
 
         var startPathFind = function (sender, destination, amount) {
-            amount.issuer = destination;
-            amount.value = String(amount.value);
+            if (amount.currency != 'XRP') {
+                amount.issuer = destination;
+                amount.value = String(amount.value);
+            } else {
+                amount = String(amount.value * 1000000);
+            }
             amount = ripple.Amount.from_json(amount);
             return remote.path_find(sender, destination, amount);
         };
