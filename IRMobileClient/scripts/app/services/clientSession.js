@@ -26,7 +26,7 @@
                 removeContact: removeContactFromBlob
             };
 
-            rippleRemote.setUser(address);
+            rippleRemote.setUser(address, secret);
             updateContactsView();
         };
 

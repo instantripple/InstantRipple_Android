@@ -8,7 +8,7 @@
                 port: 443,
                 secure: true,
             }],
-            trace: true,
+            trace: false,
             trusted: true,
             local_signing: true,
             local_fee: true,
@@ -27,7 +27,8 @@
         var reserveXRP = 0;
         var account = null;
         var invalidator = null;
-        var setUser = function(address) {
+        var setUser = function (address, secret) {
+            remote.setSecret(address, secret);
             account = remote.account(address);
             account.on('transaction-inbound', function (transaction) {
                 if (transaction.validated) {
@@ -63,6 +64,12 @@
                 $interval.cancel(invalidator);
                 invalidator = null;
             }
+        }
+
+        var calcAccountReserve = function (address, callback) {
+            remote.requestOwnerCount({ account: address }, function (err, res) {
+                callback(err, parseFloat(remote._getServer()._reserve(res).to_human()));
+            });
         }
 
         var requestAccountInfo = function(address, callback) {
@@ -143,12 +150,38 @@
             });
         };
 
-        var send = function(sender, destination, amount, callback) {
+        var startSend = function (sender, destination, amount, paths, callback) {
+            var isXRPToXRP = amount.currency == 'XRP' && paths.amount.currency == 'XRP';
+            if (amount.currency == 'XRP') {
+                amount = String(amount.value * 1000000);
+            } else {
+                amount.issuer = destination;
+                amount.value = String(amount.value);
+            }
+            amount = ripple.Amount.from_json(amount);
+
+            var sendMax;
+            var slippage = 1.01;
+            if (paths.amount.currency == 'XRP') {
+                sendMax = String(paths.amount.value * slippage * 1000000);
+            } else {
+                sendMax = {
+                    currency: paths.amount.original.currency,
+                    issuer: paths.amount.original.issuer,
+                    value: String(paths.amount.original.value * slippage)
+                };
+            }
+            sendMax = ripple.Amount.from_json(sendMax);
+
             var payment = remote.createTransaction('Payment', {
                 account: sender,
                 destination: destination,
                 amount: amount
             });
+            if (!isXRPToXRP) {
+                payment.setPaths(paths.remotePaths);
+                payment.setSendMax(sendMax);
+            }
             payment.submit(function (err, res) {
                 callback(err, res);
             });
@@ -166,13 +199,14 @@
         };
 
         return {
-            getReserve: function () { return reserveXRP; },
+            getReserve: function() { return reserveXRP; },
+            getAccountReserve: calcAccountReserve,
             setUser: setUser,
             clearUser: clearUser,
             getAccountInfo: requestAccountInfo,
             getAccountLines: requestAccountLines,
             getAccountTransactions: requestAccountTransactions,
-            send: send,
+            startSend: startSend,
             startPathFind: startPathFind,
             init: initialize
         };

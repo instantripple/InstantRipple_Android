@@ -48,7 +48,7 @@
             // 2.) Enter amount recipient will receive.
             // 3.) Select amount to send.
             // 4.) Check and commit send.
-            // 5.) Payment confirmation.
+            // 5-6.) Payment confirmation.
 
             var changeStep = function (step) {
                 if (step != $scope.send.step) {
@@ -58,6 +58,9 @@
                             if ($scope.send.pathFinder) {
                                 $scope.send.pathFinder.close();
                                 delete $scope.send.pathFinder;
+                            }
+                            if ($scope.send.xrpPath) {
+                                delete $scope.send.xrpPath;
                             }
                             break;
                         }
@@ -87,6 +90,18 @@
                     }
                 case 3:
                     {
+                        // Check for a direct XRP path.
+                        if ($scope.send.currency == 'XRP') {
+                            var address = clientSession.session().address;
+                            rippleRemote.getAccountInfo(address, function (err, res) {
+                                var xrpBalance = res.balance;
+                                rippleRemote.getAccountReserve(address, function (err, accountReserve) {
+                                    if ((xrpBalance - accountReserve) >= $scope.send.amount) {
+                                        $scope.send.xrpPath = true;
+                                    }
+                                });
+                            });
+                        }
                         // Start pathfinding.
                         $scope.send.pathFinder = rippleRemote.startPathFind(clientSession.session().address, $scope.send.recipientAddress, {
                             currency: $scope.send.currency,
@@ -99,22 +114,26 @@
                                 if (path.source_amount.currency) {
                                     amount = {
                                         currency: path.source_amount.currency,
-                                        value: path.source_amount.value
+                                        value: path.source_amount.value,
+                                        original: path.source_amount
                                     };
                                 } else {
-                                    amount = parseFloat(path.source_amount / 1000000);
+                                    amount = {
+                                        currency: 'XRP',
+                                        value: parseFloat(path.source_amount / 1000000)
+                                    };
                                 }
                                 paths.push(
                                 {
                                     amount: amount,
-                                    remotePath: path.paths_computed
+                                    remotePaths: path.paths_computed
                                 });
                             });
                             if ($scope.send.xrpPath) {
                                 paths.unshift({
                                     amount: {
                                         currency: 'XRP',
-                                        amount: $scope.send.amount
+                                        value: parseFloat($scope.send.amount)
                                     }
                                 });
                             }
@@ -123,15 +142,31 @@
                                 $scope.send.paths = paths;
                             });
                         });
-                        // Check for a direct XRP path.
-                        if ($scope.send.currency == 'XRP') {
-                            
-                        }
                         $scope.send.step = 3;
                         break;
                     }
                 case 4:
                     {
+                        $scope.send.step = 4;
+                        break;
+                    }
+                case 5:
+                    {
+                        rippleRemote.startSend(clientSession.session().address, $scope.send.recipientAddress,
+                        {
+                            currency: $scope.send.currency,
+                            value: $scope.send.amount
+                        }, $scope.send.path, function (err, res) {
+                            $timeout(function() {
+                                if (err) {
+                                    $scope.send.isError = true;
+                                } else {
+                                    $scope.send.isSuccess = true;
+                                }
+                            });
+                            $scope.send.step = 6;
+                        });
+                        $scope.send.step = 5;
                         break;
                     }
                 }
@@ -145,6 +180,19 @@
                 changeStep(3);
             }
 
+            $scope.send.onPathSelected = function (path) {
+                $scope.send.path = path;
+                changeStep(4);
+            }
+
+            $scope.send.onSend = function () {
+                changeStep(5);
+            }
+
+            $scope.send.goBack = function() {
+                changeStep($scope.send.step - 1);
+            }
+
             $scope.reset = function () {
                 if ($scope.send.recipient) {
                     delete $scope.send.recipient;
@@ -156,6 +204,9 @@
                 if ($scope.send.paths) {
                     delete $scope.send.paths;
                 }
+                if ($scope.send.pats) {
+                    delete $scope.send.path;
+                }
                 if ($scope.send.xrpPath) {
                     delete $scope.send.xrpPath;
                 }
@@ -164,6 +215,12 @@
                 }
                 if ($scope.send.currency) {
                     delete $scope.send.currency;
+                }
+                if ($scope.send.isError) {
+                    delete $scope.send.isError;
+                }
+                if ($scope.send.isSuccess) {
+                    delete $scope.send.isSuccess;
                 }
                 $scope.send.recipientIsValid = false;
                 changeStep(1);

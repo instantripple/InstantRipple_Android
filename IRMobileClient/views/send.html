@@ -1,21 +1,23 @@
 ﻿<ion-view title="Make a Payment">
     <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        <button ng-if="send.step == 1 || send.step == 6" class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        <button ng-if="send.step > 1 && send.step < 5" class="button button-icon button-clear ion-arrow-left-c" ng-click="send.goBack();"></button>
     </ion-nav-buttons>
     <ion-content padding="false">
-        <h3 class="text-center full-width padding-top">Send to</h3>
         <div ng-show="send.step == 1">
+            <h3 class="text-center full-width padding-top">Send to</h3>
             <autocomplete ng-model="send.recipient" data="send.recipients" attr-placeholder="Contact or ~Username" on-type="send.checkRecipient();"></autocomplete>
             <button class="button button-full button-calm" ng-disabled="!send.recipientIsValid" ng-click="send.onRecipientSelected();">
                 Next
             </button>
         </div>
         <div ng-show="send.step == 2">
-            <div class="address-display text-center full-width padding-top">{{send.recipient}}</div>
+            <div class="address-display text-center full-width padding-top"><strong>{{send.recipient}}</strong></div>
+            <h3 class="text-center full-width padding-top">will receive</h3>
             <div>
                 <label class="item item-input">
                     <i class="icon ion-chevron-right"></i>
-                    <input type="number" ng-model="send.amount" />
+                    <input class="text-right padding-right" type="number" ng-model="send.amount" />
                 </label>
                 <label class="item item-input item-select">
                     <i class="icon ion-cash"></i>
@@ -27,9 +29,32 @@
             </div>
         </div>
         <div ng-show="send.step == 3">
-            <div ng-repeat="path in send.paths">
-                <span>{{path.amount.value | currency: path.amount.currecy}} {{path.amount.currency}}</span>
+            <div class="address-display text-center full-width padding-top"><strong>{{send.recipient}}</strong></div>
+            <h3 class="text-center full-width padding-top">will receive</h3>
+            <div class="item item-text-wrap text-center"><span class="currency-display-value">{{send.amount | currency: send.currency}}</span> <span class="currency-display-currency">{{send.currency}}</span></div>
+            <h3 class="text-center full-width padding-top">You will send</h3>
+            <div ng-show="send.paths.length > 0" class="list card">
+                <div class="item" ng-repeat="path in send.paths" ng-click="send.onPathSelected(path);">
+                    <span>{{path.amount.value | currency: path.amount.currency}} {{path.amount.currency}}</span>
+                </div>
+            </div>
+            <div ng-show="send.paths.length < 1">
+                <p>Cannot find any payment options. Please ensure you have enough funds to send the above amount.</p>
             </div>
         </div>
-    </ion-content>
+        <div ng-show="send.step >= 4">
+            <div class="address-display text-center full-width padding-top"><strong>{{send.recipient}}</strong></div>
+            <h3 class="text-center full-width padding-top">will receive</h3>
+            <div class="item item-text-wrap text-center"><span class="currency-display-value">{{send.amount | currency: send.currency}}</span> <span class="currency-display-currency">{{send.currency}}</span></div>
+            <h3 class="text-center full-width padding-top">You will send</h3>
+            <div class="item item-text-wrap text-center"><span class="currency-display-value">{{send.path.amount.value | currency: send.path.amount.currency}}</span> <span class="currency-display-currency">{{send.path.amount.currency}}</span></div>
+            <button class="button button-full" ng-disabled="send.step >= 5" ng-click="send.onSend();" ng-class="{'button-energized': send.step < 6, 'button-assertive': send.isError, 'button-balanced': send.isSuccess,}">
+                <span ng-if="send.step == 4">Send</span>
+                <span ng-if="send.step == 5">Sending...</span>
+                <span ng-if="send.step == 6 && send.isError">An error occurred</span>
+                <span ng-if="send.step == 6 && send.isSuccess">Sent!</span>
+            </button>
+            <button class="button button-full button-light" ng-show="send.step == 6" ng-click="reset();">Reset</button>
+        </div>
+</ion-content>
 </ion-view>
