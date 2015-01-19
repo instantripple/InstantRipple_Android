@@ -15,11 +15,14 @@
             fee_cushion: 1.1,
             max_fee: 100000
         });
-        remote.connect(function() {
-            remote.requestServerInfo(function(err, res) {
-                reserveXRP = res.info.validated_ledger.reserve_base_xrp;
+
+        var initialize = function() {
+            remote.connect(function () {
+                remote.requestServerInfo(function (err, res) {
+                    reserveXRP = res.info.validated_ledger.reserve_base_xrp;
+                });
             });
-        });
+        }
 
         var reserveXRP = 0;
         var account = null;
@@ -166,7 +169,8 @@
             getAccountLines: requestAccountLines,
             getAccountTransactions: requestAccountTransactions,
             send: send,
-            startPathFind: startPathFind
+            startPathFind: startPathFind,
+            init: initialize
         };
     }]);
 })();

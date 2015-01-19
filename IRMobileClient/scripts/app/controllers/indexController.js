@@ -2,8 +2,10 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('indexController', [
-        '$scope', 'clientSession', 'analytics', '$ionicHistory', '$ionicLoading', '$ionicModal',
-        function ($scope, clientSession, analytics, $ionicHistory, $ionicLoading, $ionicModal) {
+        '$scope', 'clientSession', 'analytics', '$ionicHistory', '$ionicLoading', '$ionicModal', 'rippleRemote',
+        function ($scope, clientSession, analytics, $ionicHistory, $ionicLoading, $ionicModal, rippleRemote) {
+            rippleRemote.init();
+
             $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
                 if (toState.name === 'login') {
                     if (clientSession.session().exists) {
