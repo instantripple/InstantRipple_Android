@@ -15,8 +15,13 @@
             fee_cushion: 1.1,
             max_fee: 100000
         });
-        remote.connect();
+        remote.connect(function() {
+            remote.requestServerInfo(function(err, res) {
+                reserveXRP = res.info.validated_ledger.reserve_base_xrp;
+            });
+        });
 
+        var reserveXRP = 0;
         var account = null;
         var invalidator = null;
         var setUser = function(address) {
@@ -61,7 +66,14 @@
             remote.requestAccountInfo({
                 account: address,
                 ledger: 'validated'
-            }, function(err, res) {
+            }, function (err, res) {
+                if (err && err.remote && err.remote.error == 'actNotFound') {
+                    // The account is unfunded.
+                    callback(err, {
+                        balance: 0
+                    });
+                    return;
+                }
                 callback(err, {
                     balance: parseFloat(res.account_data.Balance / 1000000)
                 });
@@ -147,6 +159,7 @@
         };
 
         return {
+            getReserve: function () { return reserveXRP; },
             setUser: setUser,
             clearUser: clearUser,
             getAccountInfo: requestAccountInfo,

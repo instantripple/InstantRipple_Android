@@ -14,6 +14,8 @@
                     $ionicHistory.clearCache();
                     $ionicHistory.clearHistory();
                     $scope.showHeader = false;
+                } else if (toState.name === 'unfunded') {
+                    $scope.showHeader = false;
                 } else {
                     $scope.showHeader = true;
                 }

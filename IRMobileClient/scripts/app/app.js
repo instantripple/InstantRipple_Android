@@ -1,5 +1,5 @@
 ﻿(function () {
-    var irApp = angular.module('irApp', ['ngCordova', 'ionic', 'angularMoment', 'autocomplete']);
+    var irApp = angular.module('irApp', ['ngCordova', 'ionic', 'angularMoment', 'autocomplete', 'monospaced.qrcode']);
 
     ionic.Platform.ready(function () {
         if (typeof (window.tinyHippos) == "undefined") {
@@ -18,6 +18,10 @@
                     url: '/login',
                     templateUrl: 'views/login.html',
                     controller: 'loginController'
+                })
+                .state('unfunded', {
+                    templateUrl: 'views/unfunded.html',
+                    controller: 'unfundedController'
                 })
                 .state('balances', {
                     templateUrl: 'views/balances.html',

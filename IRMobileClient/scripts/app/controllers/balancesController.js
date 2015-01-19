@@ -2,14 +2,19 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('balancesController', [
-        '$scope', 'clientSession', 'rippleRemote', '$ionicLoading', '$timeout',
-        function ($scope, clientSession, rippleRemote, $ionicLoading, $timeout) {
+        '$scope', 'clientSession', 'rippleRemote', '$ionicLoading', '$timeout', '$state',
+        function ($scope, clientSession, rippleRemote, $ionicLoading, $timeout, $state) {
             $scope.balances = {};
             var firstLoad = true;
 
             $scope.balances.update = _.throttle(function () {
-                rippleRemote.getAccountInfo(clientSession.session().address, function(err, res) {
+                rippleRemote.getAccountInfo(clientSession.session().address, function (err, res) {
                     var xrpBalance = res.balance;
+                    if (xrpBalance == 0) {
+                        // The account is unfunded.
+                        $state.go('unfunded');
+                        return;
+                    }
                     rippleRemote.getAccountLines(clientSession.session().address, function(err2, res2) {
                         var lines = res2.lines;
                         var balances = Enumerable.From(lines)

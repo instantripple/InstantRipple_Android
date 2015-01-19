@@ -1,0 +1,14 @@
+﻿<ion-view title="Account Unfunded">
+    <ion-content padding="false">
+        <div class="list card">
+            <div class="item item-icon-left item-text-wrap">
+                <i class="icon ion-flash-off"></i>
+                <h2>Unfunded Account</h2>
+                <p>Your account is unfunded. Send at least {{reserve}} XRP to ~{{username}} to activate.</p>
+            </div>
+            <div class="item item-image">
+                <qrcode data="qrcode" version="6" error-correction-level="H"></qrcode>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

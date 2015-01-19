@@ -61,3 +61,8 @@
 .currency-display-currency {
     font-size: 120%;
 }
+.qrcode {
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+}
