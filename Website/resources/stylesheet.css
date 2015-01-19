@@ -76,6 +76,16 @@ p.larger{
 footer {
     clear: both;
 }
+.clear {
+    clear: both;
+}
+.feature-list {
+    float: left;
+    width: 40%;
+    padding: 12px;
+    margin: 0;
+    display: inline;
+}
 
 @media screen and (max-width: 750px){
 	#header{
