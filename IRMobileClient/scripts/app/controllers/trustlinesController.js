@@ -14,10 +14,10 @@
                 rippleRemote.getAccountLines(clientSession.session().address, function(err, res) {
                     var lines = res.lines;
                     var linesByCurrency = Enumerable.From(lines)
-                        .GroupBy('$.currency', null, function(key, x) {
+                        .GroupBy('$.currency.display', null, function(key, x) {
                             return {
                                 currency: key,
-                                lines: Enumerable.From(lines).Where(function(y) { return y.currency == key; }).ToArray(),
+                                lines: Enumerable.From(lines).Where(function(y) { return y.currency.display == key; }).ToArray(),
                             };
                         }).ToArray();
                     $timeout(function () {

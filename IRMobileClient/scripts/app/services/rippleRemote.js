@@ -26,6 +26,10 @@
 
         var reserveXRP = 0;
         var account = null;
+        var xrpCurrency = {
+            original: 'XRP',
+            display: 'XRP'
+        };
         var invalidator = null;
         var setUser = function (address, secret) {
             remote.setSecret(address, secret);
@@ -99,7 +103,7 @@
                 var lines = [];
                 res.lines.forEach(function(line) {
                     lines.push({
-                        currency: line.currency,
+                        currency: {original: line.currency, display: ripple.Currency.from_json(line.currency).to_human()},
                         balance: parseFloat(line.balance),
                         issuer: line.account,
                         limit: line.limit,
@@ -128,7 +132,7 @@
                         var amount;
                         if (transaction.tx.Amount.currency) {
                             amount = {
-                                currency: transaction.tx.Amount.currency,
+                                currency: ripple.Currency.from_json(transaction.tx.Amount.currency).to_human(),
                                 value: parseFloat(transaction.tx.Amount.value)
                             };
                         } else {
@@ -152,7 +156,7 @@
         };
 
         var startSend = function (sender, destination, amount, paths, callback) {
-            var isXRPToXRP = amount.currency == 'XRP' && paths.amount.currency == 'XRP';
+            var isXRPToXRP = amount.currency == 'XRP' && paths.amount.currency.original == 'XRP';
             if (amount.currency == 'XRP') {
                 amount = String(amount.value * 1000000);
             } else {
@@ -163,7 +167,7 @@
 
             var sendMax;
             var slippage = 1.01;
-            if (paths.amount.currency == 'XRP') {
+            if (paths.amount.currency.original == 'XRP') {
                 sendMax = String(paths.amount.value * slippage * 1000000);
             } else {
                 sendMax = {
@@ -212,7 +216,8 @@
             getAccountTransactions: requestAccountTransactions,
             startSend: startSend,
             startPathFind: startPathFind,
-            init: initialize
+            init: initialize,
+            xrp: xrpCurrency
         };
     }]);
 })();

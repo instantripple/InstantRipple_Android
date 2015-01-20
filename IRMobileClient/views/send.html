@@ -22,7 +22,7 @@
                 </label>
                 <label class="item item-input item-select">
                     <i class="icon ion-cash"></i>
-                    <select ng-model="send.currency" ng-options="currency for currency in send.currencies"></select>
+                    <select ng-model="send.currency" ng-options="currency.display for currency in send.currencies"></select>
                 </label>
                 <div ng-if="send.requiresDestinationTag">
                     <p class="item">
@@ -41,14 +41,14 @@
         <div ng-show="send.step == 3">
             <div class="address-display text-center full-width padding-top"><strong>{{send.recipient}}</strong></div>
             <h3 class="text-center full-width padding-top">will receive</h3>
-            <div class="item item-text-wrap text-center"><span class="currency-display-value">{{send.amount | currency: send.currency}}</span> <span class="currency-display-currency">{{send.currency}}</span></div>
+            <div class="item item-text-wrap text-center"><span class="currency-display-value">{{send.amount | currency: send.currency.display}}</span> <span class="currency-display-currency">{{send.currency.display}}</span></div>
             <div ng-if="send.requiresDestinationTag">
                 <p class="item text-center full-width">with destination tag {{send.destinationTag}}</p>
             </div>
             <h3 class="text-center full-width padding-top">You will send</h3>
             <div ng-show="send.paths.length > 0" class="list card">
                 <div class="item" ng-repeat="path in send.paths" ng-click="send.onPathSelected(path);">
-                    <span>{{path.amount.value | currency: path.amount.currency}} {{path.amount.currency}}</span>
+                    <span>{{path.amount.value | currency: path.amount.currency.display}} {{path.amount.currency.display}}</span>
                 </div>
             </div>
             <div ng-show="send.paths.length < 1">
@@ -58,12 +58,12 @@
         <div ng-show="send.step >= 4">
             <div class="address-display text-center full-width padding-top"><strong>{{send.recipient}}</strong></div>
             <h3 class="text-center full-width padding-top">will receive</h3>
-            <div class="item item-text-wrap text-center"><span class="currency-display-value">{{send.amount | currency: send.currency}}</span> <span class="currency-display-currency">{{send.currency}}</span></div>
+            <div class="item item-text-wrap text-center"><span class="currency-display-value">{{send.amount | currency: send.currency.display}}</span> <span class="currency-display-currency">{{send.currency.display}}</span></div>
             <div ng-if="send.requiresDestinationTag">
                 <p class="item text-center full-width">with destination tag {{send.destinationTag}}</p>
             </div>
             <h3 class="text-center full-width padding-top">You will send</h3>
-            <div class="item item-text-wrap text-center"><span class="currency-display-value">{{send.path.amount.value | currency: send.path.amount.currency}}</span> <span class="currency-display-currency">{{send.path.amount.currency}}</span></div>
+            <div class="item item-text-wrap text-center"><span class="currency-display-value">{{send.path.amount.value | currency: send.path.amount.currency.display}}</span> <span class="currency-display-currency">{{send.path.amount.currency.display}}</span></div>
             <button class="button button-full" ng-disabled="send.step >= 5" ng-click="send.onSend();" ng-class="{'button-energized': send.step < 6, 'button-assertive': send.isError, 'button-balanced': send.isSuccess,}">
                 <span ng-if="send.step == 4">Send</span>
                 <span ng-if="send.step == 5">Sending...</span>

@@ -18,11 +18,11 @@
                     rippleRemote.getAccountLines(clientSession.session().address, function(err2, res2) {
                         var lines = res2.lines;
                         var balances = Enumerable.From(lines)
-                            .GroupBy('$.currency', null, function(key, x) {
+                            .GroupBy('$.currency.display', null, function(key, x) {
                                 return {
                                     currency: key,
                                     balance: x.Sum('$.balance'),
-                                    lines: Enumerable.From(lines).Where(function(y) { return y.currency == key; }).ToArray(),
+                                    lines: Enumerable.From(lines).Where(function(y) { return y.currency.display == key; }).ToArray(),
                                     showLines: false
                                 };
                             })

@@ -104,17 +104,17 @@
                                 $timeout(function () {
                                         $scope.send.minimum = rippleRemote.getReserve();
                                         $scope.send.unfunded = true;
-                                        $scope.send.currencies = ['XRP'];
-                                        $scope.send.currency = 'XRP';
+                                        $scope.send.currencies = [rippleRemote.xrp];
+                                        $scope.send.currency = rippleRemote.xrp;
                                     });
                             } else {
                                 // Scan accepted currencies.
                                 rippleRemote.getAccountLines($scope.send.recipientAddress, function (err2, res2) {
-                                    var currencies = Enumerable.From(res2.lines).Select('$.currency').Distinct().ToArray();
-                                    currencies.unshift('XRP');
+                                    var currencies = Enumerable.From(res2.lines).Select('$.currency').Distinct('$.original').ToArray();
+                                    currencies.unshift(rippleRemote.xrp);
                                     $timeout(function () {
                                         $scope.send.currencies = currencies;
-                                        $scope.send.currency = 'XRP';
+                                        $scope.send.currency = rippleRemote.xrp;
                                     });
                                 });
                                 // Check for destination tag requirement.
@@ -127,7 +127,7 @@
                 case 3:
                     {
                         // Check for a direct XRP path.
-                        if ($scope.send.currency == 'XRP') {
+                        if ($scope.send.currency.original == 'XRP') {
                             var address = clientSession.session().address;
                             rippleRemote.getAccountInfo(address, function (err, res) {
                                 var xrpBalance = res.balance;
@@ -140,7 +140,7 @@
                         }
                         // Start pathfinding.
                         $scope.send.pathFinder = rippleRemote.startPathFind(clientSession.session().address, $scope.send.recipientAddress, {
-                            currency: $scope.send.currency,
+                            currency: $scope.send.currency.original,
                             value: $scope.send.amount
                         });
                         $scope.send.pathFinder.on('update', function(update) {
@@ -149,13 +149,13 @@
                                 var amount;
                                 if (path.source_amount.currency) {
                                     amount = {
-                                        currency: path.source_amount.currency,
+                                        currency: { original: path.source_amount.currency, display: ripple.Currency.from_json(path.source_amount.currency).to_human() },
                                         value: path.source_amount.value,
                                         original: path.source_amount
                                     };
                                 } else {
                                     amount = {
-                                        currency: 'XRP',
+                                        currency: rippleRemote.xrp,
                                         value: parseFloat(path.source_amount / 1000000)
                                     };
                                 }
@@ -168,7 +168,7 @@
                             if ($scope.send.xrpPath) {
                                 paths.unshift({
                                     amount: {
-                                        currency: 'XRP',
+                                        currency: rippleRemote.xrp,
                                         value: parseFloat($scope.send.amount)
                                     }
                                 });
@@ -194,7 +194,7 @@
                     }
                     rippleRemote.startSend(clientSession.session().address, destination,
                         {
-                            currency: $scope.send.currency,
+                            currency: $scope.send.currency.original,
                             value: $scope.send.amount
                         }, $scope.send.path, function (err, res) {
                             $timeout(function() {
