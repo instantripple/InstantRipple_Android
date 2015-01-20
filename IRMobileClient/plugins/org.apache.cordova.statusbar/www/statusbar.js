@@ -19,8 +19,6 @@
  *
 */
 
-if (typeof (window.tinyHippos) == "undefined") {
-
     var exec = require('cordova/exec');
 
     var namedColors = {
@@ -108,5 +106,3 @@ if (typeof (window.tinyHippos) == "undefined") {
     }, null, "StatusBar", "_ready", []);
 
     module.exports = StatusBar;
-
-}

@@ -15,10 +15,8 @@
             $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
                 if (toState.name === 'login') {
                     if (clientSession.session().exists) {
-                        $ionicLoading.show();
-                        location.reload();
+                        clientSession.clear();
                     }
-                    clientSession.clear();
                     $ionicHistory.clearCache();
                     $ionicHistory.clearHistory();
                     $scope.showHeader = false;

@@ -74,3 +74,6 @@ autocomplete {
     font-style: italic;
     font-size: 80%;
 }
+.text-small {
+    font-size: 75%;
+}

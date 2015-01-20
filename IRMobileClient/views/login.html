@@ -3,7 +3,7 @@
         <div id="login-logo">
             <img src="images/ir-logo.png" />
         </div>
-        <form ng-submit="login();">
+        <form ng-show="!twoFactorInfo" ng-submit="login();">
             <div class="list">
                 <label class="item item-input">
                     <span class="input-label">~</span>
@@ -22,6 +22,26 @@
             </div>
             <div class="list list-inset">
                 <div ng-if="loginForm.isError" class="item item-text-wrap item-energized"><p>We could not log you in using those details, please try again.</p></div>
+            </div>
+        </form>
+        <form ng-show="twoFactorInfo" ng-submit="twoFactorLogin();">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">2FA</span>
+                    <input type="text" placeholder="verification token" ng-model="loginForm.token">
+                </label>
+                <div class="item item-checkbox">
+                    <label class="checkbox">
+                        <input type="checkbox" ng-model="loginForm.rememberMe">
+                    </label>
+                    <small class="item-text-wrap text-small">Remember me on this device for 30 days</small>
+                </div>
+            </div>
+            <div>
+                <button type="submit" ng-disabled="!loginForm.token" class="button button-block button-positive"><i class="ion-log-in"></i></button>
+            </div>
+            <div class="list list-inset">
+                <div ng-if="loginForm.isError" class="item item-text-wrap item-energized"><p>That token appears to be incorrect, please try again.</p></div>
             </div>
         </form>
     </ion-content>
