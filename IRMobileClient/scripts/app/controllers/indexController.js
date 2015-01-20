@@ -2,9 +2,13 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('indexController', [
-        '$scope', 'clientSession', 'analytics', '$ionicHistory', '$ionicLoading', '$ionicModal', 'rippleRemote',
-        function ($scope, clientSession, analytics, $ionicHistory, $ionicLoading, $ionicModal, rippleRemote) {
+        '$scope', 'clientSession', 'analytics', '$ionicHistory', '$ionicLoading', '$ionicModal', 'rippleRemote', '$rootScope',
+        function ($scope, clientSession, analytics, $ionicHistory, $ionicLoading, $ionicModal, rippleRemote, $rootScope) {
             rippleRemote.init();
+
+            ionic.Platform.ready(function() {
+                $rootScope.appVersion = window.appVersion;
+            });
 
             $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
                 if (toState.name === 'login') {

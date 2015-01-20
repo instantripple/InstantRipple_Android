@@ -1,6 +1,8 @@
 ﻿(function () {
     var irApp = angular.module('irApp', ['ngCordova', 'ionic', 'angularMoment', 'autocomplete', 'monospaced.qrcode']);
 
+    var version = '0.5.1.0 (510)';
+
     ionic.Platform.ready(function () {
         if (typeof (window.tinyHippos) == "undefined") {
             if (!window.tinyHippos) {
@@ -8,6 +10,13 @@
             }
         }
     });
+
+
+    if (typeof (window.tinyHippos) == "undefined") {
+        window.appVersion = version;
+    } else {
+            window.appVersion = version + ' - emulated';
+    }
 
     irApp.config([
         '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {

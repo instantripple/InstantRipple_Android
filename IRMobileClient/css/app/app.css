@@ -69,3 +69,8 @@
 autocomplete {
     font-size: 110%;   
 }
+.version {
+    color: #bbb;
+    font-style: italic;
+    font-size: 80%;
+}
