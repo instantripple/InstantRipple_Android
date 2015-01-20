@@ -5,6 +5,7 @@
         '$scope', 'rippleRemote', 'clientSession', 'nameResolver', '$timeout',
         function ($scope, rippleRemote, clientSession, nameResolver, $timeout) {
             $scope.send = {};
+            $scope.send.minimum = 0;
 
             var lastRecipient;
             var runCheckRecipient = _.debounce(function () {
@@ -76,6 +77,10 @@
                                 if ($scope.send.destinationTag) {
                                     delete $scope.send.destinationTag;
                                 }
+                                if ($scope.send.unfunded) {
+                                    delete $scope.send.unfunded;
+                                }
+                                $scope.send.minimum = 0;
                             }
                             break;
                         }
@@ -97,6 +102,7 @@
                             if (xrpBalance == 0) {
                                 // The account is unfunded.
                                 $timeout(function () {
+                                        $scope.send.minimum = rippleRemote.getReserve();
                                         $scope.send.unfunded = true;
                                         $scope.send.currencies = ['XRP'];
                                         $scope.send.currency = 'XRP';
@@ -244,9 +250,13 @@
                 if ($scope.send.paths) {
                     delete $scope.send.paths;
                 }
-                if ($scope.send.pats) {
+                if ($scope.send.path) {
                     delete $scope.send.path;
                 }
+                if ($scope.send.unfunded) {
+                    delete $scope.send.unfunded;
+                }
+                $scope.send.minimum = 0;
                 if ($scope.send.xrpPath) {
                     delete $scope.send.xrpPath;
                 }
