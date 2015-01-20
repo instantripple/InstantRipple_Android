@@ -7,10 +7,16 @@
             $rootScope.hasInit = false;
 
             $ionicPlatform.ready(function () {
-                $rootScope.appVersion = window.appVersion;
-                rippleRemote.init();
-                $rootScope.hasInit = true;
+                init();
             });
+
+            var init = function () {
+                if ($rootScope.hasInit == false) {
+                    $rootScope.hasInit = true;
+                    $rootScope.appVersion = window.appVersion;
+                    rippleRemote.init();
+                }
+            }
 
             $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
                 if (toState.name === 'login') {

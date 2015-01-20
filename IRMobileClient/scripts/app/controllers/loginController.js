@@ -52,6 +52,10 @@
             $scope.twoFactorLogin = function () {
                 $scope.loginForm.isError = false;
                 $ionicLoading.show();
+                if (!$scope.loginForm.rememberMe) {
+                    // The vault client does not seem to respect our decision to not remember our device.
+                    window.localStorage['ir.2faDeviceId'] = null;
+                }
                 vaultClient.verifyToken({
                     url: $scope.twoFactorInfo.blob_url,
                     id: $scope.twoFactorInfo.blob_id,
