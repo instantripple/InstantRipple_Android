@@ -17,8 +17,6 @@
                     if (clientSession.session().exists) {
                         clientSession.clear();
                     }
-                    $ionicHistory.clearCache();
-                    $ionicHistory.clearHistory();
                     $scope.showHeader = false;
                 } else if (toState.name === 'unfunded') {
                     $scope.showHeader = false;
@@ -27,8 +25,8 @@
                 }
 
                 if (fromState.name === 'login') {
-                    $ionicHistory.clearHistory();
                     $scope.userUsername = clientSession.session().username;
+                    $rootScope.$broadcast('remote-invalidated');
                 }
 
                 analytics.screenView(toState.name);

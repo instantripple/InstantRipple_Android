@@ -1,7 +1,7 @@
 ﻿(function () {
     var irApp = angular.module('irApp', ['ngCordova', 'ionic', 'angularMoment', 'autocomplete', 'monospaced.qrcode']);
 
-    var version = '0.5.1.1 (511)';
+    var version = '0.5.2.0 (520)';
 
     ionic.Platform.ready(function() {
         if (typeof (window.tinyHippos) == "undefined") {
@@ -22,7 +22,8 @@
                 .state('login', {
                     url: '/login',
                     templateUrl: 'views/login.html',
-                    controller: 'loginController'
+                    controller: 'loginController',
+                    cache: false
                 })
                 .state('unfunded', {
                     templateUrl: 'views/unfunded.html',

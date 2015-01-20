@@ -2,8 +2,8 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('balancesController', [
-        '$scope', 'clientSession', 'rippleRemote', '$ionicLoading', '$timeout', '$state',
-        function ($scope, clientSession, rippleRemote, $ionicLoading, $timeout, $state) {
+        '$scope', 'clientSession', 'rippleRemote', '$ionicLoading', '$timeout', '$state', '$ionicHistory',
+        function ($scope, clientSession, rippleRemote, $ionicLoading, $timeout, $state, $ionicHistory) {
             $scope.balances = {};
             var firstLoad = true;
 
@@ -36,6 +36,7 @@
                         });
                         if (firstLoad) {
                             firstLoad = false;
+                            $ionicHistory.clearHistory();
                             $ionicLoading.hide();
                         }
                     });

@@ -2,13 +2,16 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('loginController', [
-        '$scope', 'analytics', '$state', 'clientSession', '$ionicLoading', '$timeout',
-        function ($scope, analytics, $state, clientSession, $ionicLoading, $timeout) {
+        '$scope', 'analytics', '$state', 'clientSession', '$ionicLoading', '$timeout', '$ionicHistory', '$rootScope',
+        function ($scope, analytics, $state, clientSession, $ionicLoading, $timeout, $ionicHistory, $rootScope) {
             $scope.loginForm = {};
 
             if (window.bypass) {
                 $scope.loginForm.bypass = true;
             }
+
+            $ionicHistory.clearCache();
+            $ionicHistory.clearHistory();
 
             var vaultClient = null;
             $scope.twoFactorInfo = null;
@@ -17,13 +20,13 @@
                 $scope.loginForm.isError = false;
                 $ionicLoading.show();
                 vaultClient = new ripple.VaultClient($scope.loginForm.username);
+                vaultClient.domain = 'ripple.com';
                 var deviceId = window.localStorage['ir.2faDeviceId'];
                 if (!deviceId) {
                     deviceId = vaultClient.generateDeviceID();
                     window.localStorage['ir.2faDeviceId'] = deviceId;
                 }
                 vaultClient.loginAndUnlock($scope.loginForm.username || window.bypass_username, $scope.loginForm.password || window.bypass_password, deviceId, function (err, res) {
-                    delete $scope.loginForm.password;
                     if (err) {
                         if (err.twofactor) {
                             $timeout(function() {
@@ -33,12 +36,14 @@
                                 $ionicLoading.hide();
                             });
                         } else {
-                            $timeout(function() {
+                            $timeout(function () {
+                                delete $scope.loginForm.password;
                                 $scope.loginForm.isError = true;
                                 $ionicLoading.hide();
                             });
                         }
                     } else {
+                        delete $scope.loginForm.password;
                         clientSession.start(res.username, res.blob.data.account_id, res.secret, res.blob);
                         $state.go('balances');
                     }
@@ -63,7 +68,8 @@
                         vaultClient.loginAndUnlock($scope.loginForm.username || window.bypass_username, $scope.loginForm.password || window.bypass_password, $scope.twoFactorInfo.device_id, function(err2, res2) {
                             delete $scope.loginForm.password;
                             if (err2) {
-                                $timeout(function() {
+                                $timeout(function () {
+                                    delete $scope.loginForm.password;
                                     $scope.twoFactorInfo = null;
                                     $scope.loginForm.rememberMe = true;
                                     $scope.loginForm.isError = true;
