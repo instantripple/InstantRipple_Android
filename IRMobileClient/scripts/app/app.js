@@ -1,7 +1,7 @@
 ﻿(function () {
     var irApp = angular.module('irApp', ['ngCordova', 'ionic', 'angularMoment', 'autocomplete', 'monospaced.qrcode']);
 
-    var version = '0.5.1.0 (510)';
+    var version = '0.5.1.1 (511)';
 
     ionic.Platform.ready(function() {
         if (typeof (window.tinyHippos) == "undefined") {
