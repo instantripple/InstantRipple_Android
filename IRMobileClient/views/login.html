@@ -14,7 +14,10 @@
                     <input type="password" placeholder="password" ng-model="loginForm.password">
                 </label>
             </div>
-            <div>
+            <div ng-show="!hasInit">
+                <button disabled class="button button-block button-positive">Loading...</button>
+            </div>
+            <div ng-show="hasInit">
                 <button type="submit" ng-disabled="!(loginForm.username && loginForm.password) && !loginForm.bypass" class="button button-block button-positive"><i class="ion-log-in"></i></button>
             </div>
             <div class="list list-inset">

@@ -4,10 +4,12 @@
     irApp.controller('indexController', [
         '$scope', 'clientSession', 'analytics', '$ionicHistory', '$ionicLoading', '$ionicModal', 'rippleRemote', '$rootScope',
         function ($scope, clientSession, analytics, $ionicHistory, $ionicLoading, $ionicModal, rippleRemote, $rootScope) {
-            rippleRemote.init();
+            $rootScope.hasInit = false;
 
             ionic.Platform.ready(function() {
                 $rootScope.appVersion = window.appVersion;
+                rippleRemote.init();
+                $rootScope.hasInit = true;
             });
 
             $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
