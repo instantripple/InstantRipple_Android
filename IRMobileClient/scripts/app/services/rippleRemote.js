@@ -86,7 +86,7 @@
                 }
                 callback(err, {
                     balance: parseFloat(res.account_data.Balance / 1000000),
-                    requiresDestinationTag: res.account_data.Flags || 6463
+                    requiresDestinationTag: (res.account_data.Flags & 131072)
                 });
             });
         };

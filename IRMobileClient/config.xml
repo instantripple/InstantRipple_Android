@@ -8,7 +8,7 @@
   <preference name="windows-phone-target-version" value="8.1" />
   <preference name="Fullscreen" value="false" />
   <preference name="Orientation" value="portrait" />
-  <preference name="android-minSdkVersion" value="7" />
+  <preference name="android-minSdkVersion" value="10" />
   <vs:plugin name="org.apache.cordova.device" version="0.2.12" />
   <vs:plugin name="org.apache.cordova.statusbar" version="0.1.8" />
   <vs:plugin name="org.apache.cordova.splashscreen" version="0.3.3" />

@@ -3,19 +3,15 @@
 
     var version = '0.5.1.0 (510)';
 
-    ionic.Platform.ready(function () {
+    ionic.Platform.ready(function() {
         if (typeof (window.tinyHippos) == "undefined") {
-            if (!window.tinyHippos) {
-                ionic.Platform.fullScreen(false, true);
-            }
+            ionic.Platform.fullScreen(false, true);
         }
     });
-
-
     if (typeof (window.tinyHippos) == "undefined") {
         window.appVersion = version;
     } else {
-            window.appVersion = version + ' - emulated';
+        window.appVersion = version + ' - emulated';
     }
 
     irApp.config([
