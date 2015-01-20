@@ -180,7 +180,6 @@
     <Content Include="plugins\org.apache.cordova.splashscreen\tests\tests.js" />
     <Content Include="plugins\org.apache.cordova.splashscreen\www\splashscreen.js" />
     <Content Include="plugins\org.apache.cordova.splashscreen\www\windows8\SplashScreenProxy.js" />
-    <Content Include="plugins\org.apache.cordova.statusbar\.fetch.json" />
     <Content Include="plugins\org.apache.cordova.statusbar\CONTRIBUTING.md" />
     <Content Include="plugins\org.apache.cordova.statusbar\doc\de\index.md" />
     <Content Include="plugins\org.apache.cordova.statusbar\doc\es\index.md" />
@@ -204,6 +203,7 @@
     <Content Include="plugins\org.apache.cordova.statusbar\src\wp\StatusBar.cs" />
     <Content Include="plugins\org.apache.cordova.statusbar\tests\plugin.xml" />
     <Content Include="plugins\org.apache.cordova.statusbar\tests\tests.js" />
+    <Content Include="plugins\org.apache.cordova.statusbar\www\.fetch.json" />
     <Content Include="plugins\org.apache.cordova.statusbar\www\statusbar.js" />
     <Content Include="res\native\android\keystore.dat" />
     <Content Include="scripts\app\controllers\unfundedController.js" />

@@ -95,14 +95,17 @@
     };
 
 // prime it
-    exec(function(res) {
-        if (typeof res == 'object') {
-            if (res.type == 'tap') {
-                cordova.fireWindowEvent('statusTap');
+    if (typeof (window.tinyHippos) == "undefined") {
+
+        exec(function(res) {
+            if (typeof res == 'object') {
+                if (res.type == 'tap') {
+                    cordova.fireWindowEvent('statusTap');
+                }
+            } else {
+                StatusBar.isVisible = res;
             }
-        } else {
-            StatusBar.isVisible = res;
-        }
-    }, null, "StatusBar", "_ready", []);
+        }, null, "StatusBar", "_ready", []);
+    }
 
     module.exports = StatusBar;
