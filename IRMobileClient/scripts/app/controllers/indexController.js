@@ -2,11 +2,11 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('indexController', [
-        '$scope', 'clientSession', 'analytics', '$ionicHistory', '$ionicLoading', '$ionicModal', 'rippleRemote', '$rootScope',
-        function ($scope, clientSession, analytics, $ionicHistory, $ionicLoading, $ionicModal, rippleRemote, $rootScope) {
+        '$scope', 'clientSession', 'analytics', '$ionicHistory', '$ionicLoading', '$ionicModal', 'rippleRemote', '$rootScope', '$ionicPlatform',
+        function ($scope, clientSession, analytics, $ionicHistory, $ionicLoading, $ionicModal, rippleRemote, $rootScope, $ionicPlatform) {
             $rootScope.hasInit = false;
 
-            ionic.Platform.ready(function() {
+            $ionicPlatform.ready(function () {
                 $rootScope.appVersion = window.appVersion;
                 rippleRemote.init();
                 $rootScope.hasInit = true;

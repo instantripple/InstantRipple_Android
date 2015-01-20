@@ -4,7 +4,7 @@
             <img src="images/ir-logo.png" />
         </div>
         <form ng-show="!twoFactorInfo" ng-submit="login();">
-            <div class="list">
+            <div class="list" ng-show="hasInit">
                 <label class="item item-input">
                     <span class="input-label">~</span>
                     <input type="text" placeholder="username" ng-model="loginForm.username">
