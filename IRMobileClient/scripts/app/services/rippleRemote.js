@@ -156,7 +156,7 @@
             if (amount.currency == 'XRP') {
                 amount = String(amount.value * 1000000);
             } else {
-                amount.issuer = destination;
+                amount.issuer = destination.address;
                 amount.value = String(amount.value);
             }
             amount = ripple.Amount.from_json(amount);
@@ -176,9 +176,12 @@
 
             var payment = remote.createTransaction('Payment', {
                 account: sender,
-                destination: destination,
+                destination: destination.address,
                 amount: amount
             });
+            if (destination.destinationTag) {
+                payment.setDestinationTag(destination.destinationTag);
+            }
             if (!isXRPToXRP) {
                 payment.setPaths(paths.remotePaths);
                 payment.setSendMax(sendMax);

@@ -181,8 +181,12 @@
                         break;
                     }
                 case 5:
-                    {
-                        rippleRemote.startSend(clientSession.session().address, $scope.send.recipientAddress,
+                {
+                    var destination = { address: $scope.send.recipientAddress };
+                    if ($scope.send.requiresDestinationTag) {
+                        destination.destinationTag = $scope.send.destinationTag;
+                    }
+                    rippleRemote.startSend(clientSession.session().address, destination,
                         {
                             currency: $scope.send.currency,
                             value: $scope.send.amount
