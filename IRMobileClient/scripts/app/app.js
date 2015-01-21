@@ -1,7 +1,7 @@
 ﻿(function () {
     var irApp = angular.module('irApp', ['ngCordova', 'ionic', 'angularMoment', 'autocomplete', 'monospaced.qrcode']);
 
-    var version = '0.5.2.0 (520)';
+    var version = '0.5.3.0 (530)';
     if (typeof (window.tinyHippos) == "undefined") {
         window.appVersion = version;
     } else {
