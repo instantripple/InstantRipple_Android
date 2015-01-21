@@ -6,6 +6,7 @@
             return (function (amount, currency) {
                 var decimals = 2;
                 switch (currency) {
+                    case 'XAU':
                     case 'BTC':
                         decimals = 4;
                         break;

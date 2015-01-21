@@ -9,8 +9,9 @@
   <preference name="Fullscreen" value="false" />
   <preference name="Orientation" value="portrait" />
   <preference name="android-minSdkVersion" value="10" />
-  <vs:plugin name="org.apache.cordova.device" version="0.2.12" />
-  <vs:plugin name="org.apache.cordova.statusbar" version="0.1.8" />
+  <preference name="SplashScreenDelay" value="10000" />
+  <vs:plugin name="org.apache.cordova.dialogs" version="0.2.10" />
   <vs:plugin name="org.apache.cordova.splashscreen" version="0.3.3" />
+  <vs:plugin name="org.apache.cordova.network-information" version="0.2.12" />
   <vs:platformSpecificValues />
 </widget>

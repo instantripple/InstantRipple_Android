@@ -2,21 +2,23 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('indexController', [
-        '$scope', 'clientSession', 'analytics', '$ionicHistory', '$ionicLoading', '$ionicModal', 'rippleRemote', '$rootScope', '$ionicPlatform',
-        function ($scope, clientSession, analytics, $ionicHistory, $ionicLoading, $ionicModal, rippleRemote, $rootScope, $ionicPlatform) {
+        '$scope', 'clientSession', 'analytics', '$ionicHistory', '$ionicLoading', '$ionicModal', 'rippleRemote', '$rootScope', '$ionicPlatform', '$timeout',
+        function ($scope, clientSession, analytics, $ionicHistory, $ionicLoading, $ionicModal, rippleRemote, $rootScope, $ionicPlatform, $timeout) {
             $rootScope.hasInit = false;
-
-            $ionicPlatform.ready(function () {
-                init();
-            });
 
             var init = function () {
                 if ($rootScope.hasInit == false) {
                     $rootScope.hasInit = true;
+                    navigator.splashscreen.hide();
                     $rootScope.appVersion = window.appVersion;
                     rippleRemote.init();
                 }
             }
+
+            $ionicPlatform.ready(function () {
+                init();
+            });
+            $timeout(init, 5500);
 
             $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
                 if (toState.name === 'login') {
