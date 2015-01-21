@@ -5,7 +5,7 @@
         function($filter) {
             return (function (amount, currency) {
                 var decimals = 2;
-                switch (currency) {
+                switch (currency.substr(0, 3)) {
                     case 'XAU':
                     case 'BTC':
                         decimals = 4;
