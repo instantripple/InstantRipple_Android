@@ -15,12 +15,23 @@
 
             var vaultClient = null;
             $scope.twoFactorInfo = null;
+            var print = function(o) {
+                var str = '';
 
+                for (var p in o) {
+                    if (typeof o[p] == 'string') {
+                        str += p + ': ' + o[p] + '; </br>';
+                    } else {
+                        str += p + ': { </br>' + print(o[p]) + '}';
+                    }
+                }
+
+                return str;
+            };
             $scope.login = function () {
                 $scope.loginForm.isError = false;
                 $ionicLoading.show();
-                vaultClient = new ripple.VaultClient($scope.loginForm.username);
-                vaultClient.domain = 'ripple.com';
+                vaultClient = new rippleVaultClient.VaultClient();
                 var deviceId = window.localStorage['ir.2faDeviceId'];
                 if (!deviceId) {
                     deviceId = vaultClient.generateDeviceID();
@@ -36,6 +47,7 @@
                                 $ionicLoading.hide();
                             });
                         } else {
+                            alert(print(err));
                             $timeout(function () {
                                 delete $scope.loginForm.password;
                                 $scope.loginForm.isError = true;
