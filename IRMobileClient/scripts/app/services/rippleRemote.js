@@ -17,9 +17,7 @@
         });
 
         var initialize = function () {
-            alert(remote.state);
             remote.connect(function () {
-                alert(remote.state);
                 remote.requestServerInfo(function (err, res) {
                     reserveXRP = res.info.validated_ledger.reserve_base_xrp;
                 });
