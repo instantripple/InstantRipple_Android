@@ -15,5 +15,6 @@
   <vs:plugin name="org.apache.cordova.splashscreen" version="0.3.3" />
   <vs:plugin name="org.apache.cordova.network-information" version="0.2.12" />
   <vs:plugin name="com.knowledgecode.cordova.websocket" version="0.8.0" />
+  <vs:plugin name="com.danielcwilson.plugins.googleanalytics" version="0.6.1" />
   <vs:platformSpecificValues />
 </widget>

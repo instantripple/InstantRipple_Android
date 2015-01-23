@@ -1,19 +1,13 @@
 ﻿(function () {
     var irApp = angular.module('irApp');
 
-    irApp.factory('analytics', [function () {
-        var googleAnalytics = ga;
-
-        googleAnalytics('create', 'UA-58514925-3', 'auto');
-        googleAnalytics('set', {
-            'appName': 'Instant Ripple',
-            'appId': 'IRMobileClient',
+    irApp.factory('analytics', ['$ionicPlatform', function ($ionicPlatform) {
+        $ionicPlatform.ready(function () {
+            window.analytics.startTrackerWithId('UA-58514925-4');
         });
 
         var screenView = function(screenName) {
-            googleAnalytics('send', 'screenview', {
-                'screenName': screenName
-            });
+            window.analytics.trackView(screenName);
         };
 
         return {
