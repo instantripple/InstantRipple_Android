@@ -44,7 +44,7 @@
             }, 2000);
             $scope.balances.update();
 
-            $scope.$on('remote-updated', function() {
+            $scope.$on('remote-updated', function () {
                 $scope.balances.update();
             });
             $scope.$on('remote-invalidated', function () {

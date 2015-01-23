@@ -2,8 +2,8 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('sendController', [
-        '$scope', 'rippleRemote', 'clientSession', 'nameResolver', '$timeout',
-        function ($scope, rippleRemote, clientSession, nameResolver, $timeout) {
+        '$scope', 'rippleRemote', 'clientSession', 'nameResolver', '$timeout', '$rootScope',
+        function ($scope, rippleRemote, clientSession, nameResolver, $timeout, $rootScope) {
             $scope.send = {};
             $scope.send.minimum = 0;
 
@@ -202,6 +202,7 @@
                                     $scope.send.isError = true;
                                 } else {
                                     $scope.send.isSuccess = true;
+                                    $rootScope.$broadcast('remote-updated');
                                 }
                             });
                             $scope.send.step = 6;
