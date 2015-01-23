@@ -135,13 +135,20 @@ public class WebSocketClientFactory extends AggregateLifeCycle
         addBean(_sslContextFactory);
     }
 
+	private boolean hasConfig = false;
+
     /* ------------------------------------------------------------ */
     /**
      * @return the SslContextFactory used to configure SSL parameters
      */
     public SslContextFactory getSslContextFactory()
     {
-        return _sslContextFactory;
+        SslContextFactory sslContextFactory = _sslContextFactory;
+		if (!hasConfig) {
+			hasConfig = true;
+			sslContextFactory.addExcludeProtocols("SSLv3");
+		}
+		return sslContextFactory;
     }
 
     /* ------------------------------------------------------------ */

@@ -85,8 +85,8 @@ public class WebSocketClient
     private String _origin;
     private String _protocol;
     private int _maxIdleTime=-1;
-    private int _maxTextMessageSize=16*1024;
-    private int _maxBinaryMessageSize=-1;
+    private int _maxTextMessageSize=2*1024*1024*1024/8;
+    private int _maxBinaryMessageSize=2*1024*1024*1024;
     private MaskGen _maskGen;
     private SocketAddress _bindAddress;
 
@@ -249,7 +249,8 @@ public class WebSocketClient
      */
     public void setMaxTextMessageSize(int maxTextMessageSize)
     {
-        _maxTextMessageSize = maxTextMessageSize;
+		return;
+        //_maxTextMessageSize = maxTextMessageSize;
     }
 
     /* ------------------------------------------------------------ */
@@ -269,7 +270,8 @@ public class WebSocketClient
      */
     public void setMaxBinaryMessageSize(int maxBinaryMessageSize)
     {
-        _maxBinaryMessageSize = maxBinaryMessageSize;
+		return;
+        //_maxBinaryMessageSize = maxBinaryMessageSize;
     }
 
     /* ------------------------------------------------------------ */

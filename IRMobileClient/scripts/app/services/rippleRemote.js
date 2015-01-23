@@ -122,7 +122,8 @@
                 account: address,
                 ledger_index_min: -1,
                 ledger_index_max: -1,
-                limit: 400
+                limit: 5,
+                binary: true
             }, function (err, res) {
                 var transactions = [];
                 res.transactions.forEach(function(transaction) {

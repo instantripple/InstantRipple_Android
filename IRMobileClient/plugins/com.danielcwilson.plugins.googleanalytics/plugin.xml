@@ -9,11 +9,12 @@
   <description>Simple tracking (screens/events) for Google Analytics SDK 3.0 (iOS/Android)</description>
   <author>Daniel C. Wilson</author>
   <license>MIT License</license>
-  <js-module src="www/analytics.js" name="UniversalAnalytics">
+  
+  <js-module src="www/analytics.js" name="UniversalAnalyticsPlugin">
     <clobbers target="analytics" />
   </js-module>
 
-  <platform name="ios">
+  <!--<platform name="ios">
     <config-file target="config.xml" parent="/*">
       <feature name="UniversalAnalytics">
         <param name="ios-package" value="UniversalAnalyticsPlugin" />
@@ -40,11 +41,11 @@
     <framework src="CoreData.framework" />
     <framework src="libz.dylib" />
     <framework src="libsqlite3.0.dylib" />
-  </platform>
+  </platform>-->
 
   <platform name="android">
     <config-file target="res/xml/config.xml" parent="/*">
-      <feature name="UniversalAnalytics">
+      <feature name="UniversalAnalyticsPlugin">
         <param name="android-package" value="com.danielcwilson.plugins.analytics.UniversalAnalyticsPlugin" />
       </feature>
     </config-file>

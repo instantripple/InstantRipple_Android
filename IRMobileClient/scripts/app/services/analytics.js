@@ -7,7 +7,7 @@
 
         $ionicPlatform.ready(function () {
             if (!isEmulated) {
-                window.analytics.startTrackerWithId('UA-58514925-4');
+                //window.analytics.startTrackerWithId('UA-58514925-4');
             }
         });
 
@@ -15,7 +15,7 @@
             if (isEmulated) {
                 return;
             }
-            window.analytics.trackView(screenName);
+            //window.analytics.trackView(screenName);
         };
 
         return {

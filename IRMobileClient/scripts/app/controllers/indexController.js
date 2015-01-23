@@ -49,7 +49,7 @@
                     $rootScope.$broadcast('remote-invalidated');
                 }
 
-                analytics.screenView(toState.name);
+                //analytics.screenView(toState.name);
             });
 
             $scope.$on('transaction-received', function(event, transaction) {

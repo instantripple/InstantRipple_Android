@@ -1,24 +1,24 @@
 function UniversalAnalyticsPlugin() {}
 
 UniversalAnalyticsPlugin.prototype.startTrackerWithId = function(id, success, error) {
-  cordova.exec(success, error, 'UniversalAnalytics', 'startTrackerWithId', [id]);
+    cordova.exec(success, error, 'UniversalAnalyticsPlugin', 'startTrackerWithId', [id]);
 };
 
 UniversalAnalyticsPlugin.prototype.setUserId = function(id, success, error) {
-  cordova.exec(success, error, 'UniversalAnalytics', 'setUserId', [id]);
+    cordova.exec(success, error, 'UniversalAnalyticsPlugin', 'setUserId', [id]);
 };
 
 /* enables verbose logging */
 UniversalAnalyticsPlugin.prototype.debugMode = function(success, error) {
-  cordova.exec(success, error, 'UniversalAnalytics', 'debugMode', []);
+    cordova.exec(success, error, 'UniversalAnalyticsPlugin', 'debugMode', []);
 };
 
 UniversalAnalyticsPlugin.prototype.trackView = function(screen, success, error) {
-  cordova.exec(success, error, 'UniversalAnalytics', 'trackView', [screen]);
+    cordova.exec(success, error, 'UniversalAnalyticsPlugin', 'trackView', [screen]);
 };
 
 UniversalAnalyticsPlugin.prototype.addCustomDimension = function(key, value, success, error) {
-  cordova.exec(success, error, 'UniversalAnalytics', 'addCustomDimension', [key, value]);
+    cordova.exec(success, error, 'UniversalAnalyticsPlugin', 'addCustomDimension', [key, value]);
 };
 
 UniversalAnalyticsPlugin.prototype.trackEvent = function(category, action, label, value, success, error) {
@@ -29,14 +29,14 @@ UniversalAnalyticsPlugin.prototype.trackEvent = function(category, action, label
     value = 0;
   }
 
-  cordova.exec(success, error, 'UniversalAnalytics', 'trackEvent', [category, action, label, value]);
+  cordova.exec(success, error, 'UniversalAnalyticsPlugin', 'trackEvent', [category, action, label, value]);
 };
 
 /**
  * https://developers.google.com/analytics/devguides/collection/android/v3/exceptions
  */
 UniversalAnalyticsPlugin.prototype.trackException = function(description, fatal, success, error) {
-  cordova.exec(success, error, 'UniversalAnalytics', 'trackException', [description, fatal]);
+    cordova.exec(success, error, 'UniversalAnalyticsPlugin', 'trackException', [description, fatal]);
 };
 
 UniversalAnalyticsPlugin.prototype.trackTiming = function(category, intervalInMilliseconds, name, label, success, error) {
@@ -50,17 +50,17 @@ UniversalAnalyticsPlugin.prototype.trackTiming = function(category, intervalInMi
     label = '';
   }
 
-  cordova.exec(success, error, 'UniversalAnalytics', 'trackTiming', [category, intervalInMilliseconds, name, label]);
+  cordova.exec(success, error, 'UniversalAnalyticsPlugin', 'trackTiming', [category, intervalInMilliseconds, name, label]);
 };
 
 /* Google Analytics e-Commerce Tracking */
 /* https://developers.google.com/analytics/devguides/collection/analyticsjs/ecommerce */
 UniversalAnalyticsPlugin.prototype.addTransaction = function(transactionId, affiliation, revenue, tax, shipping, currencyCode, success, error) {
-  cordova.exec(success, error, 'UniversalAnalytics', 'addTransaction', [transactionId, affiliation, revenue, tax, shipping, currencyCode]);
+    cordova.exec(success, error, 'UniversalAnalyticsPlugin', 'addTransaction', [transactionId, affiliation, revenue, tax, shipping, currencyCode]);
 };
 
 UniversalAnalyticsPlugin.prototype.addTransactionItem = function(transactionId, name ,sku, category, price, quantity, currencyCode, success, error) {
-  cordova.exec(success, error, 'UniversalAnalytics', 'addTransactionItem', [transactionId, name ,sku, category, price, quantity, currencyCode]);
+    cordova.exec(success, error, 'UniversalAnalyticsPlugin', 'addTransactionItem', [transactionId, name, sku, category, price, quantity, currencyCode]);
 };
 
 module.exports = new UniversalAnalyticsPlugin();
