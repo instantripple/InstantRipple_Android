@@ -892,7 +892,7 @@ var rippleVaultClient =
 
 	    //return with newly decrypted blob
 	    fn(null, self);
-	  }, request).timeout(8000);
+	  }, request)//.timeout(8000);
 	};
 
 	/**
@@ -30002,7 +30002,7 @@ var rippleVaultClient =
 	 * WebSocket constructor.
 	 */
 
-	var WebSocket = global.WebSocket || global.MozWebSocket;
+	var WebSocket = global.WebSocket || SockJS;
 
 	/**
 	 * Module exports.

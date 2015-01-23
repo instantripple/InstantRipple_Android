@@ -24,6 +24,7 @@
                 if (toState.name === 'login') {
                     if (clientSession.session().exists) {
                         clientSession.clear();
+                        window.location.reload();
                     }
                     $scope.showHeader = false;
                 } else if (toState.name === 'unfunded') {

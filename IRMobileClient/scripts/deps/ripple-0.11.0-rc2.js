@@ -19788,12 +19788,12 @@ var ripple =
 /* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// If there is no WebSocket, try MozWebSocket (support for some old browsers)
-	try {
-	  module.exports = WebSocket;
-	} catch(err) {
-	  module.exports = MozWebSocket;
-	}
+    // If there is no WebSocket, try MozWebSocket (support for some old browsers)
+    try {
+        module.exports = WebSocket;
+    } catch (e)  {
+        module.exports = SockJS;
+    }
 
 	// Some versions of Safari Mac 5 and Safari iOS 4 seem to support websockets,
 	// but can't communicate with websocketpp, which is what rippled uses.
@@ -19810,7 +19810,7 @@ var ripple =
 	  // Is Safari
 	  (match = versionRegexp.exec(navigator.userAgent)) &&
 	  // And uses the old websocket protocol
-	  2 === window.WebSocket.CLOSED
+	  2 === (window.WebSocket && window.WebSocket.CLOSED)
 	) {
 	  // Is iOS
 	  if (/iP(hone|od|ad)/.test(navigator.platform)) {

@@ -256,6 +256,7 @@
     <Content Include="scripts\deps\ripple-0.11.0-rc2.js" />
     <Content Include="scripts\deps\ripple-vault-client-0.4.6.js" />
     <Content Include="scripts\deps\sjcl.js" />
+    <Content Include="scripts\deps\sockjs.js" />
     <Content Include="scripts\deps\underscore.js" />
     <Content Include="views\unfunded.html" />
     <Content Include="views\modal-received.html" />
