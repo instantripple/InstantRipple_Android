@@ -2,8 +2,8 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('loginController', [
-        '$scope', 'analytics', '$state', 'clientSession', '$ionicLoading', '$timeout', '$ionicHistory', '$rootScope',
-        function ($scope, analytics, $state, clientSession, $ionicLoading, $timeout, $ionicHistory, $rootScope) {
+        '$scope', 'analytics', '$state', 'clientSession', '$ionicLoading', '$timeout', '$ionicHistory',
+        function ($scope, analytics, $state, clientSession, $ionicLoading, $timeout, $ionicHistory) {
             $scope.loginForm = {};
 
             if (window.bypass) {
@@ -12,6 +12,13 @@
 
             var vaultClient = null;
             $scope.twoFactorInfo = null;
+
+            $scope.$on('$ionicView.enter', function () {
+                var username = window.localStorage['ir.username'];
+                if (username) {
+                    $scope.loginForm.username = username;
+                }
+            });
 
             $scope.login = function () {
                 $scope.loginForm.isError = false;
@@ -43,6 +50,7 @@
                         delete $scope.loginForm.password;
                         $ionicHistory.clearCache();
                         $ionicHistory.clearHistory();
+                        window.localStorage['ir.username'] = res.username;
                         clientSession.start(res.username, res.blob.data.account_id, res.secret, res.blob);
                         $state.go('balances');
                     }
@@ -79,6 +87,7 @@
                                     $ionicLoading.hide();
                                 });
                             } else {
+                                window.localStorage['ir.username'] = res2.username;
                                 clientSession.start(res2.username, res2.blob.data.account_id, res2.secret, res2.blob);
                                 $state.go('balances');
                             }
