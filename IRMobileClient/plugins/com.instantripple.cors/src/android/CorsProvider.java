@@ -26,6 +26,8 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import javax.net.ssl.SSLContext;
 import org.apache.http.conn.ssl.SSLContexts;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.message.BasicHeader;
 
 import android.os.AsyncTask;
 
@@ -33,7 +35,16 @@ public class CorsProvider extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
         if (action.equals("get")) {
 			String url = args.optString(0);
-			new HttpAsyncTask(callbackContext).execute(url);
+			new HttpAsyncTask(callbackContext).execute("get", url);
+            PluginResult pluginResult = new PluginResult(PluginResult.Status.NO_RESULT);
+			pluginResult.setKeepCallback(true);
+            callbackContext.sendPluginResult(pluginResult);
+			return true;
+        }
+		else if (action.equals("post")) {
+			String url = args.optString(0);
+			String data = args.optString(1);
+			new HttpAsyncTask(callbackContext).execute("post", url, data);
             PluginResult pluginResult = new PluginResult(PluginResult.Status.NO_RESULT);
 			pluginResult.setKeepCallback(true);
             callbackContext.sendPluginResult(pluginResult);
@@ -47,8 +58,16 @@ public class CorsProvider extends CordovaPlugin {
 	public HttpAsyncTask(CallbackContext callbackContext) {
 		mCallbackContext = callbackContext;
 	}
-     public String doInBackground(String... urls) {
-		return GET(urls[0]);
+     public String doInBackground(String... opts) {
+		if (opts[0] == "get"){
+		return GET(opts[1]);
+		}
+		else if (opts[0] == "post"){
+		return POST(opts[1], opts[2]);
+		}
+		else {
+			return "ERR No method";
+		}
      }
 
      public void onPostExecute(String data) {
@@ -80,6 +99,46 @@ public class CorsProvider extends CordovaPlugin {
  
 			// make GET request to the given URL
             HttpResponse httpResponse = httpclient.execute(new HttpGet(url));
+ 
+            // receive response as inputStream
+            inputStream = httpResponse.getEntity().getContent();
+ 
+            // convert input stream to string
+            if(inputStream != null)
+                result = convertInputStreamToString(inputStream);
+            else
+                result = "ERR";
+ 
+        } catch (Exception e) {
+			result = "ERR " + e.toString();
+        }
+ 
+        return result;
+    }
+
+		public String POST(String url, String data){
+        InputStream inputStream = null;
+        String result = "";
+        try {
+		SSLContext sslContext = SSLContexts.custom()
+        .useTLS()
+        .build();
+			SSLConnectionSocketFactory sf = new SSLConnectionSocketFactory(
+        sslContext,
+        new String[] {"TLSv1", "TLSv1.1", "TLSv1.2"},
+        null,
+        SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
+
+            // create HttpClient
+            HttpClient httpclient = HttpClients.custom()
+        .setSSLSocketFactory(sf)
+        .build();;
+ 
+			HttpPost httppost = new HttpPost(url);
+			StringEntity dataEntity = new StringEntity(data); 
+			dataEntity.setContentType(new BasicHeader("content-type", "application/json"));
+			httppost.setEntity(dataEntity);
+            HttpResponse httpResponse = httpclient.execute(httppost);
  
             // receive response as inputStream
             inputStream = httpResponse.getEntity().getContent();

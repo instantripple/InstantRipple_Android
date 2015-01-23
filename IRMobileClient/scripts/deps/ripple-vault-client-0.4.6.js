@@ -240,7 +240,6 @@ var rippleVaultClient =
 	    };
 	    
 	    blobClient.get(options, function (err, blob) {
-	        alert(err);
 	      if (err) {
 	        return callback(err);
 	      }
@@ -853,7 +852,7 @@ var rippleVaultClient =
 	  url  = self.url + '/v1/blob/' + self.id;
 	  if (this.device_id) url += '?device_id=' + this.device_id;
 	  
-	  request.get(url, function(err, resp) {
+	  cors.get(url, function (err, resp) {
 	    if (err) {
 	      return fn(new Error(err.message || 'Could not retrieve blob'));
 	    } else if (!resp.body) {
@@ -893,7 +892,7 @@ var rippleVaultClient =
 
 	    //return with newly decrypted blob
 	    fn(null, self);
-	  }).timeout(8000);
+	  }, request).timeout(8000);
 	};
 
 	/**
@@ -1720,9 +1719,7 @@ var rippleVaultClient =
 	    }
 	  };
 	  
-	  request.post(config.url)
-	    .send(config.data)
-	    .end(function(err, resp) { 
+	  cors.post(config.url, config.data, function(err, resp) { 
 	      if (err) {
 	        fn(err);
 	      } else if (resp.body && resp.body.result === 'success') {
@@ -1732,7 +1729,7 @@ var rippleVaultClient =
 	      } else {
 	        fn(new Error('Unable to verify authentication token.'));
 	      }
-	    });   
+	    }, request);   
 	};
 
 	/**
@@ -2356,7 +2353,7 @@ var rippleVaultClient =
 	};
 
 	AuthInfo._getUser = function(url, callback) {
-	    cors.get(url, callback, superagent.get);
+	    cors.get(url, callback, superagent);
 	};
 
 
