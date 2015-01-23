@@ -14,6 +14,8 @@
             $scope.twoFactorInfo = null;
 
             $scope.$on('$ionicView.enter', function () {
+                $ionicHistory.clearCache();
+                $ionicHistory.clearHistory();
                 var username = window.localStorage['ir.username'];
                 if (username) {
                     $scope.loginForm.username = username;

@@ -2,8 +2,8 @@
     var irApp = angular.module('irApp');
 
     irApp.controller('indexController', [
-        '$scope', 'clientSession', 'analytics', '$ionicHistory', '$ionicLoading', '$ionicModal', 'rippleRemote', '$rootScope', '$ionicPlatform', '$timeout',
-        function ($scope, clientSession, analytics, $ionicHistory, $ionicLoading, $ionicModal, rippleRemote, $rootScope, $ionicPlatform, $timeout) {
+        '$scope', 'clientSession', 'analytics', '$ionicHistory', '$ionicLoading', '$ionicModal', 'rippleRemote', '$rootScope', '$ionicPlatform', '$timeout', '$state',
+        function ($scope, clientSession, analytics, $ionicHistory, $ionicLoading, $ionicModal, rippleRemote, $rootScope, $ionicPlatform, $timeout, $state) {
             $rootScope.hasInit = false;
 
             var init = function () {
@@ -19,6 +19,18 @@
                 init();
             });
             $timeout(init, 5500);
+
+            $ionicPlatform.registerBackButtonAction(function (event) {
+                if ($ionicHistory.currentStateName() == 'login') {
+                    event.preventDefault();
+                }
+                else if ($ionicHistory.backView() == null) {
+                    if ($ionicHistory.currentStateName() != 'balances') {
+                        $state.go('balances');
+                    }
+                    event.preventDefault();
+                } 
+            }, 100);
 
             $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
                 if (toState.name === 'login') {
