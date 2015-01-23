@@ -116,6 +116,11 @@
     <Content Include="hooks\after_prepare\minify.js" />
     <Content Include="images\ir-logo.png" />
     <Content Include="package.json" />
+    <Content Include="plugins\com.instantripple.cors\plugin.xml" />
+    <Content Include="plugins\com.instantripple.cors\src\android\CorsProvider.java" />
+    <Content Include="plugins\com.instantripple.cors\src\android\deps\httpclient-android-4.3.5.1.jar" />
+    <Content Include="plugins\com.instantripple.cors\src\android\deps\org.json-20120521.jar" />
+    <Content Include="plugins\com.instantripple.cors\www\cors.js" />
     <Content Include="plugins\org.apache.cordova.dialogs\.fetch.json" />
     <Content Include="plugins\org.apache.cordova.dialogs\CONTRIBUTING.md" />
     <Content Include="plugins\org.apache.cordova.dialogs\doc\de\index.md" />

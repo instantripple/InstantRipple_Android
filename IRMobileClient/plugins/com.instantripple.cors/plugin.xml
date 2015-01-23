@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+xmlns:android="http://schemas.android.com/apk/res/android"
+           id="com.instantripple.cors"
+      version="0.1.0">
+
+    <name>CORS</name>
+
+    <js-module src="www/cors.js" name="cors">
+        <clobbers target="cors" />
+    </js-module>
+
+    <!-- android -->
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="CorsProvider">
+        <param name="android-package" value="com.instantripple.cors.provider.CorsProvider"/>
+      </feature>
+    </config-file>
+    
+    <config-file target="AndroidManifest.xml" parent="/*">
+      <uses-permission android:name="android.permission.INTERNET" />
+    </config-file>
+    
+    <source-file src="src/android/deps/httpclient-android-4.3.5.1.jar" target-dir="libs" />
+    <source-file src="src/android/deps/org.json-20120521.jar" target-dir="libs" />
+
+    <source-file src="src/android/CorsProvider.java" target-dir="src/com/instantripple/cors" />
+  </platform>
+</plugin>

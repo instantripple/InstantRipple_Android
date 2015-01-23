@@ -2,7 +2,7 @@
 <widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="com.instantripple.mobileclient" android-versionCode="530" version="0.5.3.0" xmlns="http://www.w3.org/ns/widgets">
   <name>Instant Ripple</name>
   <content src="index.html" />
-  <access origin="*" />
+  <access origin="*" uri="*" subdomains="true"/>
   <preference name="SplashScreen" value="screen" />
   <preference name="windows-target-version" value="8.0" />
   <preference name="windows-phone-target-version" value="8.1" />
@@ -10,6 +10,7 @@
   <preference name="Orientation" value="portrait" />
   <preference name="android-minSdkVersion" value="10" />
   <preference name="SplashScreenDelay" value="10000" />
+  <vs:plugin name="com.instantripple.cors" version="0.1.0" />
   <vs:plugin name="org.apache.cordova.dialogs" version="0.2.10" />
   <vs:plugin name="org.apache.cordova.splashscreen" version="0.3.3" />
   <vs:plugin name="org.apache.cordova.network-information" version="0.2.12" />

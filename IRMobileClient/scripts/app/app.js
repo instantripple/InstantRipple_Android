@@ -9,7 +9,9 @@
     }
 
     irApp.config([
-        '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+        '$stateProvider', '$urlRouterProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $httpProvider) {
+            $httpProvider.defaults.useXDomain = true;
+
             $urlRouterProvider.otherwise('/login');
 
             $stateProvider

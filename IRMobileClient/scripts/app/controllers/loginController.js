@@ -15,19 +15,7 @@
 
             var vaultClient = null;
             $scope.twoFactorInfo = null;
-            var print = function(o) {
-                var str = '';
 
-                for (var p in o) {
-                    if (typeof o[p] == 'string') {
-                        str += p + ': ' + o[p] + '; </br>';
-                    } else {
-                        str += p + ': { </br>' + print(o[p]) + '}';
-                    }
-                }
-
-                return str;
-            };
             $scope.login = function () {
                 $scope.loginForm.isError = false;
                 $ionicLoading.show();
@@ -39,6 +27,7 @@
                 }
                 vaultClient.loginAndUnlock($scope.loginForm.username || window.bypass_username, $scope.loginForm.password || window.bypass_password, deviceId, function (err, res) {
                     if (err) {
+                        alert(err);
                         if (err.twofactor) {
                             $timeout(function() {
                                 $scope.twoFactorInfo = err.twofactor;
@@ -47,7 +36,6 @@
                                 $ionicLoading.hide();
                             });
                         } else {
-                            alert(print(err));
                             $timeout(function () {
                                 delete $scope.loginForm.password;
                                 $scope.loginForm.isError = true;

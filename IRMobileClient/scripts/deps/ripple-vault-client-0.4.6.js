@@ -104,7 +104,6 @@ var rippleVaultClient =
 	    if (typeof authInfo.blobvault !== 'string') {
 	      return callback(new Error('No blobvault specified in the authinfo.'));
 	    }
-
 	    callback(null, authInfo);
 	  });  
 	};
@@ -240,7 +239,8 @@ var rippleVaultClient =
 	      device_id : device_id
 	    };
 	    
-	    blobClient.get(options, function(err, blob) {
+	    blobClient.get(options, function (err, blob) {
+	        alert(err);
 	      if (err) {
 	        return callback(err);
 	      }
@@ -2356,7 +2356,7 @@ var rippleVaultClient =
 	};
 
 	AuthInfo._getUser = function(url, callback) {
-	  superagent.get(url, callback);
+	    cors.get(url, callback, superagent.get);
 	};
 
 
@@ -2433,7 +2433,7 @@ var rippleVaultClient =
 	  };
 
 	  function getUser(url, callback) {
-	    self._getUser(url, function(err, res) {
+	      self._getUser(url, function (err, res) {
 	      if (err || res.error) {
 	        callback(new Error('Authentication info server unreachable'));
 	      } else {
