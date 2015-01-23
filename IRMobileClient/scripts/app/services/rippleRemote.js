@@ -16,8 +16,10 @@
             max_fee: 100000
         });
 
-        var initialize = function() {
+        var initialize = function () {
+            alert(remote.state);
             remote.connect(function () {
+                alert(remote.state);
                 remote.requestServerInfo(function (err, res) {
                     reserveXRP = res.info.validated_ledger.reserve_base_xrp;
                 });
@@ -76,7 +78,7 @@
             });
         }
 
-        var requestAccountInfo = function(address, callback) {
+        var requestAccountInfo = function (address, callback) {
             remote.requestAccountInfo({
                 account: address,
                 ledger: 'validated'
