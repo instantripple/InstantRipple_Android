@@ -1,7 +1,7 @@
 ﻿(function() {
     var irApp = angular.module('irApp');
 
-    irApp.factory('clientSession', ['rippleRemote', function (rippleRemote) {
+    irApp.factory('clientSession', ['rippleRemote', '$interval', '$state', function (rippleRemote, $interval, $state) {
         var session = {};
         var blob;
 
@@ -13,6 +13,14 @@
         };
         createEmptySession();
 
+        $interval(function() {
+            if (session.exists) {
+                if (moment(session.userLastSeen).add(1, 'minutes') < moment()) {
+                    // $state.go('login');
+                }
+            }
+        }, 1000);
+
         var start = function (username, address, secret, remoteBlob) {
             blob = remoteBlob;
             session = {
@@ -21,6 +29,7 @@
                 secret: secret,
                 exists: true,
                 createdAt: new Date(),
+                userLastSeen: new Date(),
                 contacts: [],
                 saveContact: saveContactToBlob,
                 removeContact: removeContactFromBlob
