@@ -12,7 +12,7 @@
                         break;
                     case 'XRP':
                     case 'STR':
-                        decimals = 0;
+                        decimals = 1;
                         break;
                 };
 

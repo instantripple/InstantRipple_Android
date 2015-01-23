@@ -7,7 +7,7 @@
             <div class="item item-icon-left full-width" ng-repeat="transaction in transactions.payments | orderBy: '-time'"
                  ng-class="{'transaction-receive': transaction.receive , 'transaction-send': !transaction.receive}">
                 <i class="icon" ng-class="{'ion-arrow-down-a': transaction.receive , 'ion-arrow-up-a': !transaction.receive}"></i>
-                <div>{{transaction.amount.value | currency}} {{transaction.amount.currency}}</div>
+                <div>{{transaction.amount.value | currency: transaction.amount.currency}} {{transaction.amount.currency}}</div>
                 <div address="transaction.receive ? transaction.sender : transaction.destination"></div>
                 <div am-time-ago="transaction.time"></div>
             </div>
