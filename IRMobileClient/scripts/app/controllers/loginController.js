@@ -10,9 +10,6 @@
                 $scope.loginForm.bypass = true;
             }
 
-            $ionicHistory.clearCache();
-            $ionicHistory.clearHistory();
-
             var vaultClient = null;
             $scope.twoFactorInfo = null;
 
@@ -44,6 +41,8 @@
                         }
                     } else {
                         delete $scope.loginForm.password;
+                        $ionicHistory.clearCache();
+                        $ionicHistory.clearHistory();
                         clientSession.start(res.username, res.blob.data.account_id, res.secret, res.blob);
                         $state.go('balances');
                     }
